@@ -1,5 +1,5 @@
 import {getAnalytics} from "firebase/analytics";
-import {getDatabase, remove as fbRemove, onValue as fbOnValue, ref as fbref, set as fbset} from "firebase/database";
+import {getDatabase, remove as fbRemove, onValue as fbOnValue, ref as fbref, set as fbset, update as fbupdate} from "firebase/database";
 import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut} from "firebase/auth";
 import {user, kids} from "./store";
@@ -36,6 +36,11 @@ export const login = () => {
 export const set = (path, value) => {
    console.log(`Setting ${path} to ${JSON.stringify(value)}`)
    return fbset(fbref(db, path), value);
+}
+
+export const update = (path, value) => {
+   console.log(`Updating ${path} with ${JSON.stringify(value)}`)
+   return fbupdate(fbref(db, path), value);
 }
 
 export const onValue = (path, callback) => {

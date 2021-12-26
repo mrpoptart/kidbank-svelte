@@ -30,12 +30,9 @@
 <Table striped>
     <thead>
         <tr>
-            <th>Date</th>
+            <th style="max-width: 130px">Date</th>
             <th>Amount</th>
-<!--            <th>Save</th>-->
-<!--            <th>Share</th>-->
             <th>Description</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -43,10 +40,7 @@
         <tr on:click={()=>{selectedTransaction=transaction; toggle()}}>
             <td>{dayjs(parseInt(id)).format('M-D-YYYY')}</td>
             <td>{currencyFormatter(transaction.amount)}</td>
-<!--            <td>{currencyFormatter(transaction.save)}</td>-->
-<!--            <td>{currencyFormatter(transaction.share)}</td>-->
             <td>{transaction.name}</td>
-            <td><Icon name="three-dots"/></td>
         </tr>
     {/each}
     </tbody>

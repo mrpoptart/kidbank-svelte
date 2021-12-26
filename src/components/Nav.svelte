@@ -15,6 +15,7 @@
         DropdownItem, Icon
     } from 'sveltestrap';
     import { createEventDispatcher } from 'svelte';
+    import {currencyFormatter} from "../helpers";
 
     const dispatch = createEventDispatcher();
 
@@ -30,13 +31,13 @@
 </script>
 
 <Navbar style="width: 100%" color="dark" dark expand="xs">
-    <NavbarBrand href="/">KidBank</NavbarBrand>
+    <NavbarBrand style="font-family: Brush Script MT, Brush Script Std, cursive;" href="/">💰 Kid Bank</NavbarBrand>
     <NavbarToggler on:click={() => (isOpen = !isOpen)} />
     <Collapse {isOpen} navbar expand="xs" on:update={handleUpdate}>
         <Nav class="ms-auto" navbar>
             {#each Object.entries($kids) as [id, kid]}
                 <NavItem>
-                    <NavLink href="#kid/{kid.name}">{kid.name}</NavLink>
+                    <NavLink href="#kid/{kid.name}">{kid.name} ({currencyFormatter(kid.spendable, true)})</NavLink>
                 </NavItem>
             {/each}
             <Dropdown>

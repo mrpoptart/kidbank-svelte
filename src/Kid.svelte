@@ -1,10 +1,11 @@
 <script>
-    import {currencyFormatter} from "./helpers";
-    import {payAllowance, payInterest, set} from "./firebase";
+    import {currencyFormatter, hash} from "./helpers";
+    import {payAllowance, payInterest, set, update} from "./firebase";
     import KidTransactionTable from "./components/KidTransactionTable.svelte";
     import dayjs from "dayjs";
     import Transact from "./Transact.svelte";
-    import {Button, Icon} from "sveltestrap";
+    import {Button, Col, Container, Icon, Row} from "sveltestrap";
+    import KidSettings from "./components/KidSettings.svelte";
 
     export let kid;
     export let visible = false;
@@ -65,15 +66,31 @@
         let amount = value - save - share;
         transact(time, save, share, amount, name);
     }
+
+    async function saveKid(e){
+        let updatedKid = e.detail;
+        await update(`children/${kid.id}`, updatedKid);
+        hash.set('kid', updatedKid.name)
+    }
 </script>
 
 {#if visible}
-    <div class="name">{kid.name}</div>
-    <h2>Spendable {currencyFormatter(kid.spendable)}</h2>
-    <div style="margin: 10px">
-        <div>Savings {currencyFormatter(kid.saved)}</div>
-        <div>Sharing {currencyFormatter(kid.shared)}</div>
-    </div>
+    <Container>
+        <Row>
+            <Col>
+                <div class="name">{kid.name}</div>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <h2 style="text-align: center">Spendable {currencyFormatter(kid.spendable)}</h2>
+            </Col>
+        </Row>
+        <Row>
+            <Col style="text-align: center">Savings {currencyFormatter(kid.saved)}</Col>
+            <Col style="text-align: center">Sharing {currencyFormatter(kid.shared)}</Col>
+        </Row>
+    </Container>
     <div style="margin: 10px">
         <div>{dayjs().subtract(lastPayday+1, 'days').format('MMM-D')}: Last Paycheck</div>
         <div>{dayjs().format('MMM-D')}: Today</div>
@@ -83,13 +100,14 @@
     <Transact kid="{kid}" on:submit={handleEarn}/>
     <Button on:click={()=>{payAllowance(kid)}}>Allowance</Button>
     <Button on:click={()=>{payInterest(kid)}}>Interest</Button>
-    <Button><Icon name="gear-fill"/></Button>
+    <KidSettings kid="{kid}" on:save={saveKid}/>
     <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}"/>
 {/if}
 
 
 <style>
     .name {
+        text-align: center;
         font-family: Brush Script MT, Brush Script Std, cursive;
         font-size: 70px;
         line-height: 70px;

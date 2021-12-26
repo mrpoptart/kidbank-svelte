@@ -1,10 +1,15 @@
 import {hash as storeHash} from './store'
 
-export const currencyFormatter = (amount) => {
-   return new Intl.NumberFormat('en-US', {
+export const currencyFormatter = (amount, whole=false) => {
+   let formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
-   }).format(amount);
+   });
+   let output = formatter.format(amount);
+   if(whole){
+      output = output.split('.')[0];
+   }
+   return output;
 }
 
 class Hash {
