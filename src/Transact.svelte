@@ -53,11 +53,11 @@
     <div on:click="{(e)=>{if(e.currentTarget.id === 'overlay') showTransact=false;}}" id="overlay">
         <div on:click="{(e)=>{e.stopPropagation()}}" class="card">
             <h1>What was {spend?'spent':'earned'}?</h1>
-            <label>Date
+            <label>When
                 <input style="width: 100%" type="datetime-local" bind:value={date} step="2">
             </label>
             <label>Name
-                <input style="width: 100%" type="text" bind:value={name} placeholder="What was done?">
+                <input style="width: 100%" type="text" bind:value={name} placeholder="What was it?">
             </label>
             <label>Amount
                 <input style="width: 100%" type="text" bind:value={amount} placeholder="How much was {spend?'spent':'earned'}?">
@@ -71,7 +71,7 @@
                     <input name="spend" type="radio" bind:group={spendFrom} value="share">
                 </label>
                 <label>Share ({currencyFormatter(kid.saved)})
-                    <input name="spend" type="radio" bind:group={spendFrom} value="save">
+                    <input name="spend" tgit coype="radio" bind:group={spendFrom} value="save">
                 </label>
             {:else}
                 <label>Save ({kid.save}%)?</label>
@@ -93,7 +93,7 @@
         top:0px;
         left:0px;
         height: 100%;
-        background: rgba(121, 121, 121, 0.27);
+        background: rgba(0, 0, 0, 0.88);
         display: flex;
         justify-content: center;
         align-items: center;
