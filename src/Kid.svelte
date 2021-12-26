@@ -4,6 +4,7 @@
     import KidTransactionTable from "./components/KidTransactionTable.svelte";
     import dayjs from "dayjs";
     import Transact from "./Transact.svelte";
+    import {Button, Icon} from "sveltestrap";
 
     export let kid;
     export let visible = false;
@@ -80,8 +81,9 @@
     </div>
     <Transact kid="{kid}" on:submit={handleSpend} spend/>
     <Transact kid="{kid}" on:submit={handleEarn}/>
-    <button on:click={()=>{payAllowance(kid)}}>Allowance</button>
-    <button on:click={()=>{payInterest(kid)}}>Interest</button>
+    <Button on:click={()=>{payAllowance(kid)}}>Allowance</Button>
+    <Button on:click={()=>{payInterest(kid)}}>Interest</Button>
+    <Button><Icon name="gear-fill"/></Button>
     <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}"/>
 {/if}
 

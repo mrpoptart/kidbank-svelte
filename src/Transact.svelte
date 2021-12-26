@@ -2,6 +2,7 @@
     import dayjs from 'dayjs';
     import {currencyFormatter} from "./helpers";
     import { createEventDispatcher } from 'svelte';
+    import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "sveltestrap";
     const dispatch = createEventDispatcher();
 
     export let kid;
@@ -43,48 +44,51 @@
             };
         }
         dispatch('submit', payload);
-        showTransact=false;
+        toggle();
     }
-
+    let open = false;
+    const toggle = () => {
+        open = !open;
+        reset();
+    };
 </script>
-
-<button on:click={()=>{reset(); showTransact=true}}>{spend?'Spend':'Earn'}</button>
-{#if showTransact}
-    <div on:click="{(e)=>{if(e.currentTarget.id === 'overlay') showTransact=false;}}" id="overlay">
-        <div on:click="{(e)=>{e.stopPropagation()}}" class="card">
-            <h1>What was {spend?'spent':'earned'}?</h1>
-            <label>Date
-                <input style="width: 100%" type="datetime-local" bind:value={date} step="2">
-            </label>
-            <label>Name
-                <input style="width: 100%" type="text" bind:value={name} placeholder="What was done?">
-            </label>
-            <label>Amount
-                <input style="width: 100%" type="text" bind:value={amount} placeholder="How much was {spend?'spent':'earned'}?">
-            </label>
-            {#if spend}
-                <h3>Spend from:</h3>
-                <label>Spend ({currencyFormatter(kid.spendable)})
-                    <input name="spend" type="radio" bind:group={spendFrom} value="spend">
-                </label>
-                <label>Share ({currencyFormatter(kid.shared)})
-                    <input name="spend" type="radio" bind:group={spendFrom} value="share">
-                </label>
-                <label>Share ({currencyFormatter(kid.saved)})
-                    <input name="spend" type="radio" bind:group={spendFrom} value="save">
-                </label>
-            {:else}
-                <label>Save ({kid.save}%)?</label>
-                <input type="checkbox" bind:checked={save}>
-                <label>Share ({kid.share}%)?</label>
-                <input type="checkbox" bind:checked={share}>
-            {/if}
-            <br>
-            <button on:click={()=>{showTransact=false}}>Cancel</button>
-            <button on:click={submit}>Save</button>
-        </div>
-    </div>
-{/if}
+<Button on:click={toggle}>{spend?'Spend':'Earn'}</Button>
+<Modal isOpen={open} {toggle}>
+    <ModalHeader>What was {spend?'spent':'earned'}?</ModalHeader>
+    <ModalBody>
+        <Form>
+            <FormGroup>
+                <Label>Date</Label>
+                <Input type="datetime-local" bind:value={date} step="2"/>
+            </FormGroup>
+            <FormGroup>
+                <Label>Name</Label>
+                <Input type="text" bind:value={name} placeholder="What was done?"/>
+            </FormGroup>
+            <FormGroup>
+                <Label>Amount</Label>
+                <Input type="number" bind:value={amount} placeholder="How much was {spend?'spent':'earned'}?"/>
+            </FormGroup>
+        </Form>
+        {#if spend}
+            <h3>Spend from:</h3>
+            <FormGroup>
+                <Input name="spend" type="radio" bind:group={spendFrom} value="spend" label="Spend"/>
+                <Input name="spend" type="radio" bind:group={spendFrom} value="share" label="Share"/>
+                <Input name="spend" type="radio" bind:group={spendFrom} value="save" label="Save"/>
+            </FormGroup>
+        {:else}
+            <FormGroup>
+                <Input label="Save ({kid.save}%)?" type="checkbox" bind:checked={save}/>
+                <Input label="Share ({kid.share}%)?" type="checkbox" bind:checked={share}/>
+            </FormGroup>
+        {/if}
+    </ModalBody>
+    <ModalFooter>
+        <Button color="secondary"  on:click={toggle}>Cancel</Button>
+        <Button color="primary" on:click={submit}>Save</Button>
+    </ModalFooter>
+</Modal>
 
 <style>
     #overlay{
