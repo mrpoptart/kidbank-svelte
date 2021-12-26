@@ -1,15 +1,13 @@
 <script>
    import {user, loggedIn} from './store';
    import {login, logout} from "./firebase"
+   import { Button } from 'sveltestrap';
 </script>
 {#if $loggedIn}
-    <button on:click={logout}>Log Out</button>
+    <Button on:click={logout}>Log Out</Button>
 <!--    <a on:click={logout}>Logout</a>-->
 {:else}
-    <button on:click|preventDefault={login}>Sign In with Google</button>
+    <Button on:click={login}>Sign In with Google</Button>
 {/if}
 <style>
-    a {
-        cursor: pointer;
-    }
 </style>

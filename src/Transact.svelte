@@ -1,7 +1,7 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
     import dayjs from 'dayjs';
     import {currencyFormatter} from "./helpers";
+    import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
     export let kid;
