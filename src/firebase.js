@@ -103,8 +103,7 @@ export const payAllowance = (kid) => {
    let ageYears = dayjs().diff(kid.birthday, 'years');
    earn(kid, ageYears, '💰 Allowance');
 }
-
-function payInterest(kid) {
+export const payInterest = (kid) => {
    let newSpend = kid.spendable * (kid.interest / 100);
    let newSave = kid.saved * (kid.interest / 100);
    let newShare = kid.shared * (kid.interest / 100);
