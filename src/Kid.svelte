@@ -9,22 +9,60 @@
     export let visible = false;
 
     let lastPayday = Math.abs(dayjs().isoWeekday(kid.payday) - dayjs()) / 1000 / 60 / 60 / 24 + 1;
-    function handleSpend(e){
-        console.log(`handling ${JSON.stringify(e.detail)}`);
-        const time = new Date(e.detail.date).getTime()
-        // set(`children/${kid.id}/transactions/${time}`, {
-        //     save: e.detail.save,
-        //     share: e.detail.share,
-        //     amount: -e.detail.amount,
-        //     name: e.detail.name,
-        // })
+
+    function transact(time, save, share, amount, name) {
+        set(`children/${kid.id}/transactions/${time}`, {
+            save,
+            share,
+            amount,
+            name,
+        })
     }
-    function handleEarn(e){
+
+    function handleSpend(e) {
         console.log(`handling ${JSON.stringify(e.detail)}`);
         const time = new Date(e.detail.date).getTime()
-        //if we save
-        //if we share
-        //if we both
+        let name = e.detail.name;
+        let value = e.detail.amount;
+        let save = 0;
+        let share = 0;
+        let amount = 0;
+
+        switch (e.detail.spendFrom) {
+            case 'spend':
+                amount = value;
+                if(amount > 0) amount *=-1;
+                break;
+            case 'save':
+                save = value;
+                if(save > 0) save *=-1;
+                break;
+            case 'share':
+                share = value;
+                if(share > 0) share *=-1;
+                break;
+        }
+        transact(time, save, share, amount, name);
+    }
+
+    function handleEarn(e) {
+        console.log(`handling ${JSON.stringify(e.detail)}`);
+        const time = new Date(e.detail.date).getTime()
+        let name = e.detail.name;
+        let value = e.detail.amount;
+        let save = 0;
+        let share = 0;
+
+        if (e.detail.save) {
+            save = value * (parseFloat(kid.save) / 100);
+        }
+
+        if (e.detail.share) {
+            share = (value - save) * (parseFloat(kid.share) / 100);
+        }
+
+        let amount = value - save - share;
+        transact(time, save, share, amount, name);
     }
 </script>
 
@@ -36,12 +74,12 @@
         <div>Sharing {currencyFormatter(kid.shared)}</div>
     </div>
     <div style="margin: 10px">
-        <div>Last Payday: {dayjs().subtract(lastPayday, 'days').format('M-D-YYYY')}</div>
-        <div>Today: {dayjs().format('M-D-YYYY')}</div>
-        <div>Next Payday: {dayjs().add(7 - lastPayday, 'days').format('M-D-YYYY')}</div>
+        <div>{dayjs().subtract(lastPayday+1, 'days').format('MMM-D')}: Last Paycheck</div>
+        <div>{dayjs().format('MMM-D')}: Today</div>
+        <div>{dayjs().add(8 - lastPayday, 'days').format('MMM-D')}: Next Paycheck</div>
     </div>
     <Transact kid="{kid}" on:submit={handleSpend} spend/>
-    <Transact kid="{kid}" on:submit={handleEarn} />
+    <Transact kid="{kid}" on:submit={handleEarn}/>
     <button on:click={()=>{payAllowance(kid)}}>Allowance</button>
     <button on:click={()=>{payInterest(kid)}}>Interest</button>
     <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}"/>

@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import dayjs from 'dayjs';
+    import {currencyFormatter} from "./helpers";
     const dispatch = createEventDispatcher();
 
     export let kid;
@@ -8,11 +9,20 @@
 
     let showTransact=false;
     let amount;
-    let date=dayjs().format('YYYY-M-DTHH:mm');
+    let date;
     let name;
-    let save=true;
-    let share=true;
-    let spendFrom='spend'
+    let save;
+    let share;
+    let spendFrom;
+
+    function reset(){
+        amount='';
+        date=dayjs().format('YYYY-M-DTHH:mm:ss');
+        name='';
+        save=true;
+        share=true;
+        spendFrom='spend';
+    }
 
     function submit(){
         let payload
@@ -38,13 +48,13 @@
 
 </script>
 
-<button on:click={()=>{showTransact=true}}>{spend?'Spend':'Earn'}</button>
+<button on:click={()=>{reset(); showTransact=true}}>{spend?'Spend':'Earn'}</button>
 {#if showTransact}
     <div on:click="{(e)=>{if(e.currentTarget.id === 'overlay') showTransact=false;}}" id="overlay">
         <div on:click="{(e)=>{e.stopPropagation()}}" class="card">
             <h1>What was {spend?'spent':'earned'}?</h1>
             <label>Date
-                <input style="width: 100%" type="datetime-local" bind:value={date}>
+                <input style="width: 100%" type="datetime-local" bind:value={date} step="2">
             </label>
             <label>Name
                 <input style="width: 100%" type="text" bind:value={name} placeholder="What was done?">
@@ -53,13 +63,14 @@
                 <input style="width: 100%" type="text" bind:value={amount} placeholder="How much was {spend?'spent':'earned'}?">
             </label>
             {#if spend}
-                <label>Spend ({kid.save}%)?
+                <h3>Spend from:</h3>
+                <label>Spend ({currencyFormatter(kid.spendable)})
                     <input name="spend" type="radio" bind:group={spendFrom} value="spend">
                 </label>
-                <label>Share ({kid.share}%)?
+                <label>Share ({currencyFormatter(kid.shared)})
                     <input name="spend" type="radio" bind:group={spendFrom} value="share">
                 </label>
-                <label>Share ({kid.share}%)?
+                <label>Share ({currencyFormatter(kid.saved)})
                     <input name="spend" type="radio" bind:group={spendFrom} value="save">
                 </label>
             {:else}

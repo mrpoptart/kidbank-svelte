@@ -15,6 +15,8 @@
     <thead>
     <th>Date</th>
     <th>Amount</th>
+    <th>Save</th>
+    <th>Share</th>
     <th>Description</th>
     <th>Delete</th>
     </thead>
@@ -23,6 +25,8 @@
         <tr>
             <td>{dayjs(parseInt(id)).format('M-D-YYYY')}</td>
             <td>{currencyFormatter(transaction.amount)}</td>
+            <td>{currencyFormatter(transaction.save)}</td>
+            <td>{currencyFormatter(transaction.share)}</td>
             <td>{transaction.name}</td>
             <td><a on:click={del(transaction.id)}>🗑️</a></td>
         </tr>
