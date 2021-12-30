@@ -2,7 +2,18 @@
     import dayjs from 'dayjs';
     import {currencyFormatter} from "./helpers";
     import { createEventDispatcher } from 'svelte';
-    import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "sveltestrap";
+    import {
+        Button,
+        DropdownItem,
+        Form,
+        FormGroup, Icon,
+        Input,
+        Label,
+        Modal,
+        ModalBody,
+        ModalFooter,
+        ModalHeader
+    } from "sveltestrap";
     const dispatch = createEventDispatcher();
 
     export let kid;
@@ -52,7 +63,15 @@
         reset();
     };
 </script>
-<Button on:click={toggle}>{spend?'Spend':'Earn'}</Button>
+<DropdownItem on:click={toggle}>
+    {#if spend}
+        <Icon name="wallet"/>
+        Spend
+    {:else}
+        <Icon name="piggy-bank"/>
+        Earn
+    {/if}
+</DropdownItem>
 <Modal isOpen={open} {toggle}>
     <ModalHeader>What was {spend?'spent':'earned'}?</ModalHeader>
     <ModalBody>
@@ -91,21 +110,4 @@
 </Modal>
 
 <style>
-    #overlay{
-        width: 100%;
-        position: absolute;
-        top:0px;
-        left:0px;
-        height: 100%;
-        background: rgba(121, 121, 121, 0.27);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .card {
-        padding: 2em;
-        background-color: #FFFFFF;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px #888888;
-    }
 </style>

@@ -4,13 +4,23 @@
     import KidTransactionTable from "./components/KidTransactionTable.svelte";
     import dayjs from "dayjs";
     import Transact from "./Transact.svelte";
-    import {Button, Col, Container, Icon, Row} from "sveltestrap";
+    import {
+        Button,
+        ButtonDropdown,
+        ButtonGroup,
+        Col,
+        Container, DropdownItem,
+        DropdownMenu,
+        DropdownToggle,
+        Icon,
+        Row, Table
+    } from "sveltestrap";
     import KidSettings from "./components/KidSettings.svelte";
 
     export let kid;
     export let visible = false;
 
-    let lastPayday = Math.abs(dayjs().isoWeekday(kid.payday) - dayjs()) / 1000 / 60 / 60 / 24 + 1;
+    let lastPayday = dayjs().startOf('week').add(kid.payday, 'day');
 
     function transact(time, save, share, amount, name) {
         set(`children/${kid.id}/transactions/${time}`, {
@@ -83,7 +93,8 @@
         </Row>
         <Row>
             <Col>
-                <h2 style="text-align: center">Spendable {currencyFormatter(kid.spendable)}</h2>
+                <div style="text-align: center">Spend</div>
+                <div style="line-height: 80px;font-size: 80px; font-family: Impact, sans-serif; text-align: center">{currencyFormatter(kid.spendable)}</div>
             </Col>
         </Row>
         <Row>
@@ -91,17 +102,51 @@
             <Col style="text-align: center">Sharing {currencyFormatter(kid.shared)}</Col>
         </Row>
     </Container>
-    <div style="margin: 10px">
-        <div>{dayjs().subtract(lastPayday+1, 'days').format('MMM-D')}: Last Paycheck</div>
-        <div>{dayjs().format('MMM-D')}: Today</div>
-        <div>{dayjs().add(8 - lastPayday, 'days').format('MMM-D')}: Next Paycheck</div>
-    </div>
-    <Transact kid="{kid}" on:submit={handleSpend} spend/>
-    <Transact kid="{kid}" on:submit={handleEarn}/>
-    <Button on:click={()=>{payAllowance(kid)}}>Allowance</Button>
-    <Button on:click={()=>{payInterest(kid)}}>Interest</Button>
+
+    <Table bordered style="width: 100%;margin: 15px 0;">
+        <tr style="width: 100%; font-size: 12px;">
+            <td style="width:12.5%; text-align: center;">{lastPayday.format('M/D')}</td>
+            <td style="width:12.5%; text-align: center;">Tues</td>
+            <td style="width:12.5%; text-align: center;">Weds</td>
+            <td style="width:12.5%; text-align: center;">Thurs</td>
+            <td style="width:12.5%; text-align: center;">Fri</td>
+            <td style="width:12.5%; text-align: center;">Sat</td>
+            <td style="width:12.5%; text-align: center;">Sun</td>
+            <td style="width:12.5%; text-align: center;">{lastPayday.add(7, 'days').format('M/D')}</td>
+        </tr>
+        <tr style="width: 100%">
+            {#each Array(8) as ai, i}
+                <td style="text-align:center; font-size: 20px;">
+                    {#if (dayjs().diff(lastPayday, 'days') === i)}
+                        <Icon name="star-fill"/>
+                    {/if}
+                </td>
+            {/each}
+        </tr>
+    </Table>
+
+
+<ButtonGroup style="width:100%; display:flex">
+    <ButtonDropdown style="width: 100%">
+        <DropdownToggle color="primary" caret>Transact</DropdownToggle>
+        <DropdownMenu style="width: 100%">
+            <Transact kid="{kid}" on:submit={handleSpend} spend/>
+            <Transact kid="{kid}" on:submit={handleEarn}/>
+            <DropdownItem on:click={()=>{payAllowance(kid)}}>
+                <Icon name="cash"/>
+                Allowance - {currencyFormatter(dayjs().diff(kid.birthday, 'years'))}
+            </DropdownItem>
+            <DropdownItem on:click={()=>{payInterest(kid)}}>
+                <Icon name="percent"/>
+                Interest - {kid.interest}%
+            </DropdownItem>
+        </DropdownMenu>
+    </ButtonDropdown>
     <KidSettings kid="{kid}" on:save={saveKid}/>
-    <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}"/>
+</ButtonGroup>
+
+
+    <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}" lastPayday="{lastPayday}"/>
 {/if}
 
 

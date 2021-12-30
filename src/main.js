@@ -1,7 +1,7 @@
 import App from './App.svelte';
 import dayjs from 'dayjs'
-import isoWeek from 'dayjs/plugin/isoWeek';
-dayjs.extend(isoWeek);
+import weekday from 'dayjs/plugin/weekday';
+dayjs.extend(weekday);
 
 const app = new App({
 	target: document.body,
