@@ -43,15 +43,15 @@
         switch (e.detail.spendFrom) {
             case 'spend':
                 amount = value;
-                if(amount > 0) amount *=-1;
+                if (amount > 0) amount *= -1;
                 break;
             case 'save':
                 save = value;
-                if(save > 0) save *=-1;
+                if (save > 0) save *= -1;
                 break;
             case 'share':
                 share = value;
-                if(share > 0) share *=-1;
+                if (share > 0) share *= -1;
                 break;
         }
         transact(time, save, share, amount, name);
@@ -77,7 +77,7 @@
         transact(time, save, share, amount, name);
     }
 
-    async function saveKid(e){
+    async function saveKid(e) {
         let updatedKid = e.detail;
         await update(`children/${kid.id}`, updatedKid);
         hash.set('kid', updatedKid.name)
@@ -104,15 +104,15 @@
     </Container>
 
     <Table bordered style="width: 100%;margin: 15px 0;">
-        <tr style="width: 100%; font-size: 12px;">
-            <td style="width:12.5%; text-align: center;">{lastPayday.format('M/D')}</td>
-            <td style="width:12.5%; text-align: center;">Tues</td>
-            <td style="width:12.5%; text-align: center;">Weds</td>
-            <td style="width:12.5%; text-align: center;">Thurs</td>
-            <td style="width:12.5%; text-align: center;">Fri</td>
-            <td style="width:12.5%; text-align: center;">Sat</td>
-            <td style="width:12.5%; text-align: center;">Sun</td>
-            <td style="width:12.5%; text-align: center;">{lastPayday.add(7, 'days').format('M/D')}</td>
+        <tr class="payday-head" style="width: 100%; font-size: 12px;">
+            <td>{lastPayday.format('M/D')}</td>
+            <td>Tues</td>
+            <td>Weds</td>
+            <td>Thurs</td>
+            <td>Fri</td>
+            <td>Sat</td>
+            <td>Sun</td>
+            <td>{lastPayday.add(7, 'days').format('M/D')}</td>
         </tr>
         <tr style="width: 100%">
             {#each Array(8) as ai, i}
@@ -126,24 +126,24 @@
     </Table>
 
 
-<ButtonGroup style="width:100%; display:flex">
-    <ButtonDropdown style="width: 100%">
-        <DropdownToggle color="primary" caret>Transact</DropdownToggle>
-        <DropdownMenu style="width: 100%">
-            <Transact kid="{kid}" on:submit={handleSpend} spend/>
-            <Transact kid="{kid}" on:submit={handleEarn}/>
-            <DropdownItem on:click={()=>{payAllowance(kid)}}>
-                <Icon name="cash"/>
-                Allowance - {currencyFormatter(dayjs().diff(kid.birthday, 'years'))}
-            </DropdownItem>
-            <DropdownItem on:click={()=>{payInterest(kid)}}>
-                <Icon name="percent"/>
-                Interest - {kid.interest}%
-            </DropdownItem>
-        </DropdownMenu>
-    </ButtonDropdown>
-    <KidSettings kid="{kid}" on:save={saveKid}/>
-</ButtonGroup>
+    <ButtonGroup style="width:100%; display:flex">
+        <ButtonDropdown style="width: 100%">
+            <DropdownToggle color="primary" caret>Transact</DropdownToggle>
+            <DropdownMenu style="width: 100%">
+                <Transact kid="{kid}" on:submit={handleSpend} spend/>
+                <Transact kid="{kid}" on:submit={handleEarn}/>
+                <DropdownItem on:click={()=>{payAllowance(kid)}}>
+                    <Icon name="cash"/>
+                    Allowance - {currencyFormatter(dayjs().diff(kid.birthday, 'years'))}
+                </DropdownItem>
+                <DropdownItem on:click={()=>{payInterest(kid)}}>
+                    <Icon name="percent"/>
+                    Interest - {kid.interest}%
+                </DropdownItem>
+            </DropdownMenu>
+        </ButtonDropdown>
+        <KidSettings kid="{kid}" on:save={saveKid}/>
+    </ButtonGroup>
 
 
     <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}" lastPayday="{lastPayday}"/>
@@ -157,5 +157,11 @@
         font-size: 70px;
         line-height: 70px;
         margin: 20px 0 10px;
+    }
+
+    .payday-head td{
+        padding: 3px;
+        width: 12.5%;
+        text-align: center;
     }
 </style>

@@ -52,71 +52,74 @@
    }
 
 </script>
-<div style="max-width: 600px;">
-    <ButtonDropdown>
-        <DropdownToggle color="light" caret>💰 Kid Bank</DropdownToggle>
-        <DropdownMenu>
-            <DropdownItem on:click="{()=>{window.location.hash=''}}">
-                <Icon name="house-door"></Icon>
-                Home
-            </DropdownItem>
-            {#if $loggedIn}
-                <DropdownItem>
-                    <Icon name="plus-circle"></Icon>
-                    Add Kid
+<div style="width: 100%; display:flex; justify-content:center;">
+    <div style="max-width: 600px;">
+        <ButtonDropdown>
+            <DropdownToggle color="light" caret>💰 Kid Bank</DropdownToggle>
+            <DropdownMenu>
+                <DropdownItem on:click="{()=>{window.location.hash=''}}">
+                    <Icon name="house-door"></Icon>
+                    Home
                 </DropdownItem>
-                {#each Object.entries($kids) as [id, kid]}
-                    <DropdownItem color="primary" on:click="{window.location.hash=`kid/${kid.name}`}">
-                        <Icon name="person"></Icon>
-                        {kid.name} - {currencyFormatter(kid.spendable)}
+                {#if $loggedIn}
+                    <DropdownItem on:click={toggleAddKid}>
+                        <Icon name="plus-circle"></Icon>
+                        Add Kid
                     </DropdownItem>
-                {/each}
-                <DropdownItem on:click={logout}>
-                    <Icon name="door-open"></Icon>
-                    Log Out
-                </DropdownItem>
-            {/if}
-        </DropdownMenu>
-    </ButtonDropdown>
+                    {#each Object.entries($kids) as [id, kid]}
+                        <DropdownItem color="primary" on:click="{window.location.hash=`kid/${kid.name}`}">
+                            <Icon name="person"></Icon>
+                            {kid.name} - {currencyFormatter(kid.spendable)}
+                        </DropdownItem>
+                    {/each}
+                    <DropdownItem on:click={logout}>
+                        <Icon name="door-open"></Icon>
+                        Log Out
+                    </DropdownItem>
+                {/if}
+            </DropdownMenu>
+        </ButtonDropdown>
 
-    {#if !$chosenKid}
-        {#if $loggedIn}
-            <div style="margin-top:15px; display:flex; flex-direction: column; gap: 15px">
-                {#each Object.entries($kids) as [id, kid]}
+        {#if !$chosenKid}
+            {#if $loggedIn}
+                <div style="margin-top:15px; display:flex; flex-direction: column; gap: 15px">
+                    {#each Object.entries($kids) as [id, kid]}
+                        <div style="width: 100%">
+                            <Button style="padding: 30px 50px" block color="primary"
+                                    on:click="{window.location.hash=`kid/${kid.name}`}">
+                                <div style="font-size: 40px; line-height: 30px;">
+                                    <Icon name="person-circle"/>
+                                    {kid.name}
+                                </div>
+                                <div>{currencyFormatter(kid.spendable)}</div>
+                            </Button>
+                        </div>
+                    {/each}
                     <div style="width: 100%">
-                        <Button style="padding: 30px 0" block color="primary" on:click="{window.location.hash=`kid/${kid.name}`}">
-                            <div style="font-size: 40px; line-height: 30px;" >
-                                <Icon name="person-circle"/>
-                                {kid.name}
+                        <Button style="padding: 30px 0" block color="success" on:click="{toggleAddKid}">
+                            <div style="font-size: 40px; line-height: 30px;">
+                                <Icon name="plus-circle"/>
+                                Add Kid
                             </div>
-                            <div>{currencyFormatter(kid.spendable)}</div>
+                            <div>Add another kid</div>
                         </Button>
                     </div>
-                {/each}
-                <div style="width: 100%">
-                    <Button style="padding: 30px 0" block color="success" on:click="{toggleAddKid}">
-                        <div style="font-size: 40px; line-height: 30px;" >
-                            <Icon name="plus-circle"/>
-                            Add Kid
+                </div>
+            {:else}
+                <div style="width: 100%; margin-top: 15px;">
+                    <Button style="padding: 30px 0" block color="primary" on:click="{login}">
+                        <div style="font-size: 30px; line-height: 30px;">
+                            Log In with Google
                         </div>
-                        <div>Add another kid</div>
                     </Button>
                 </div>
-            </div>
-        {:else}
-            <div style="width: 100%; margin-top: 15px;">
-                <Button style="padding: 30px 0" block color="primary" on:click="{login}">
-                    <div style="font-size: 30px; line-height: 30px;" >
-                        Log In with Google
-                    </div>
-                </Button>
-            </div>
+            {/if}
         {/if}
-    {/if}
 
-    {#each Object.entries($kids) as [id, kid]}
-        <Kid kid="{kid}" visible="{kid.name === $chosenKid}"/>
-    {/each}
+        {#each Object.entries($kids) as [id, kid]}
+            <Kid kid="{kid}" visible="{kid.name === $chosenKid}"/>
+        {/each}
+    </div>
 </div>
 <Modal isOpen={addKidOpen} toggle="{toggleAddKid}">
     <AddKidModal on:addKid={addKid} on:cancel={toggleAddKid}/>
