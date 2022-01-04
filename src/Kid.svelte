@@ -1,14 +1,26 @@
 <script>
-    import {currencyFormatter} from "./helpers";
-    import {payAllowance, payInterest, set} from "./firebase";
+    import {currencyFormatter, hash} from "./helpers";
+    import {payAllowance, payInterest, set, update} from "./firebase";
     import KidTransactionTable from "./components/KidTransactionTable.svelte";
     import dayjs from "dayjs";
     import Transact from "./Transact.svelte";
+    import {
+        Button,
+        ButtonDropdown,
+        ButtonGroup,
+        Col,
+        Container, DropdownItem,
+        DropdownMenu,
+        DropdownToggle,
+        Icon,
+        Row, Table
+    } from "sveltestrap";
+    import KidSettings from "./components/KidSettings.svelte";
 
     export let kid;
     export let visible = false;
 
-    let lastPayday = Math.abs(dayjs().isoWeekday(kid.payday) - dayjs()) / 1000 / 60 / 60 / 24 + 1;
+    let lastPayday = dayjs().startOf('week').add(kid.payday, 'day');
 
     function transact(time, save, share, amount, name) {
         set(`children/${kid.id}/transactions/${time}`, {
@@ -31,15 +43,15 @@
         switch (e.detail.spendFrom) {
             case 'spend':
                 amount = value;
-                if(amount > 0) amount *=-1;
+                if (amount > 0) amount *= -1;
                 break;
             case 'save':
                 save = value;
-                if(save > 0) save *=-1;
+                if (save > 0) save *= -1;
                 break;
             case 'share':
                 share = value;
-                if(share > 0) share *=-1;
+                if (share > 0) share *= -1;
                 break;
         }
         transact(time, save, share, amount, name);
@@ -64,33 +76,92 @@
         let amount = value - save - share;
         transact(time, save, share, amount, name);
     }
+
+    async function saveKid(e) {
+        let updatedKid = e.detail;
+        await update(`children/${kid.id}`, updatedKid);
+        hash.set('kid', updatedKid.name)
+    }
 </script>
 
 {#if visible}
-    <div class="name">{kid.name}</div>
-    <h2>Spendable {currencyFormatter(kid.spendable)}</h2>
-    <div style="margin: 10px">
-        <div>Savings {currencyFormatter(kid.saved)}</div>
-        <div>Sharing {currencyFormatter(kid.shared)}</div>
-    </div>
-    <div style="margin: 10px">
-        <div>{dayjs().subtract(lastPayday+1, 'days').format('MMM-D')}: Last Paycheck</div>
-        <div>{dayjs().format('MMM-D')}: Today</div>
-        <div>{dayjs().add(8 - lastPayday, 'days').format('MMM-D')}: Next Paycheck</div>
-    </div>
-    <Transact kid="{kid}" on:submit={handleSpend} spend/>
-    <Transact kid="{kid}" on:submit={handleEarn}/>
-    <button on:click={()=>{payAllowance(kid)}}>Allowance</button>
-    <button on:click={()=>{payInterest(kid)}}>Interest</button>
-    <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}"/>
+    <Container>
+        <Row>
+            <Col>
+                <div class="name">{kid.name}</div>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <div style="text-align: center">Spend</div>
+                <div style="line-height: 80px;font-size: 80px; font-family: Impact, sans-serif; text-align: center">{currencyFormatter(kid.spendable)}</div>
+            </Col>
+        </Row>
+        <Row>
+            <Col style="text-align: center">Savings {currencyFormatter(kid.saved)}</Col>
+            <Col style="text-align: center">Sharing {currencyFormatter(kid.shared)}</Col>
+        </Row>
+    </Container>
+
+    <Table bordered style="width: 100%;margin: 15px 0;">
+        <tr class="payday-head" style="width: 100%; font-size: 12px;">
+            <td>{lastPayday.format('M/D')}</td>
+            <td>Tues</td>
+            <td>Weds</td>
+            <td>Thurs</td>
+            <td>Fri</td>
+            <td>Sat</td>
+            <td>Sun</td>
+            <td>{lastPayday.add(7, 'days').format('M/D')}</td>
+        </tr>
+        <tr style="width: 100%">
+            {#each Array(8) as ai, i}
+                <td style="text-align:center; font-size: 20px;">
+                    {#if (dayjs().diff(lastPayday, 'days') === i)}
+                        <Icon name="star-fill"/>
+                    {/if}
+                </td>
+            {/each}
+        </tr>
+    </Table>
+
+
+    <ButtonGroup style="width:100%; display:flex">
+        <ButtonDropdown style="width: 100%">
+            <DropdownToggle color="primary" caret>Transact</DropdownToggle>
+            <DropdownMenu style="width: 100%">
+                <Transact kid="{kid}" on:submit={handleSpend} spend/>
+                <Transact kid="{kid}" on:submit={handleEarn}/>
+                <DropdownItem on:click={()=>{payAllowance(kid)}}>
+                    <Icon name="cash"/>
+                    Allowance - {currencyFormatter(dayjs().diff(kid.birthday, 'years'))}
+                </DropdownItem>
+                <DropdownItem on:click={()=>{payInterest(kid)}}>
+                    <Icon name="percent"/>
+                    Interest - {kid.interest}%
+                </DropdownItem>
+            </DropdownMenu>
+        </ButtonDropdown>
+        <KidSettings kid="{kid}" on:save={saveKid}/>
+    </ButtonGroup>
+
+
+    <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}" lastPayday="{lastPayday}"/>
 {/if}
 
 
 <style>
     .name {
+        text-align: center;
         font-family: Brush Script MT, Brush Script Std, cursive;
         font-size: 70px;
         line-height: 70px;
         margin: 20px 0 10px;
+    }
+
+    .payday-head td{
+        padding: 3px;
+        width: 12.5%;
+        text-align: center;
     }
 </style>
