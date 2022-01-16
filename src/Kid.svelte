@@ -20,7 +20,14 @@
     export let kid;
     export let visible = false;
 
-    let lastPayday = dayjs().startOf('week').add(kid.payday, 'day');
+    let today = dayjs();
+    let startOfWeek = today.startOf('week');
+    let lastMonday = startOfWeek.add(1, 'day');
+    // since the week starts on sunday, the "start of week"
+    // monday might be after today if today is sunday.
+    if(lastMonday > today) {
+        lastMonday = lastMonday.subtract(7, 'day');
+    }
 
     function transact(time, save, share, amount, name) {
         set(`children/${kid.id}/transactions/${time}`, {
@@ -105,19 +112,19 @@
 
     <Table bordered style="width: 100%;margin: 15px 0;">
         <tr class="payday-head" style="width: 100%; font-size: 12px;">
-            <td>{lastPayday.format('M/D')}</td>
+            <td>{lastMonday.format('M/D')}</td>
             <td>Tues</td>
             <td>Weds</td>
             <td>Thurs</td>
             <td>Fri</td>
             <td>Sat</td>
             <td>Sun</td>
-            <td>{lastPayday.add(7, 'days').format('M/D')}</td>
+            <td>{lastMonday.add(7, 'days').format('M/D')}</td>
         </tr>
         <tr style="width: 100%">
             {#each Array(8) as ai, i}
                 <td style="text-align:center; font-size: 20px;">
-                    {#if (dayjs().diff(lastPayday, 'days') === i)}
+                    {#if (dayjs().diff(lastMonday, 'days') === i)}
                         <Icon name="star-fill"/>
                     {/if}
                 </td>
@@ -146,7 +153,7 @@
     </ButtonGroup>
 
 
-    <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}" lastPayday="{lastPayday}"/>
+    <KidTransactionTable kidId="{kid.id}" transactions="{kid.transactions}" lastPayday="{lastMonday}"/>
 {/if}
 
 

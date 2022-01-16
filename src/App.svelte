@@ -54,7 +54,7 @@
 </script>
 <div style="width: 100%; display:flex; justify-content:center;">
     <div style="max-width: 600px;">
-        <ButtonDropdown>
+        <ButtonDropdown style="width:100%">
             <DropdownToggle color="light" caret>💰 Kid Bank</DropdownToggle>
             <DropdownMenu>
                 <DropdownItem on:click="{()=>{window.location.hash=''}}">
