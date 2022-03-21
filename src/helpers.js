@@ -1,5 +1,3 @@
-import {hash as storeHash} from './store'
-
 export const currencyFormatter = (amount, whole=false) => {
    let formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -40,8 +38,7 @@ class Hash {
          console.log(hashArr)
          while(hashArr.length > 0) {
             let id = hashArr.shift()
-            let val = hashArr.shift()
-            this.$hash[id] = val;
+            this.$hash[id] = hashArr.shift();
          }
       }
    }

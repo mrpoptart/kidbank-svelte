@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="">
+    <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Removed comment">
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
@@ -77,7 +77,7 @@
       <updated>1640530217982</updated>
       <workItem from="1640530225117" duration="3130000" />
       <workItem from="1647752573556" duration="7195000" />
-      <workItem from="1647814619553" duration="1809000" />
+      <workItem from="1647814619553" duration="2446000" />
     </task>
     <servers />
   </component>
@@ -94,5 +94,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Removed comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed comment" />
   </component>
 </project>

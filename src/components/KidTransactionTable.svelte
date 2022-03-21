@@ -2,7 +2,7 @@
     import dayjs from "dayjs";
     import {currencyFormatter} from "../helpers";
     import {remove} from "../firebase";
-    import {Button, Icon, Modal, ModalBody, ModalFooter, ModalHeader, Table} from "sveltestrap";
+    import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Table} from "sveltestrap";
 
     export let kidId;
     export let lastPayday;
@@ -57,10 +57,6 @@
 </Table>
 
 <style>
-    .pay {
-        background-color: darkgreen !important;
-    }
-
     tr {
         cursor: pointer;
     }

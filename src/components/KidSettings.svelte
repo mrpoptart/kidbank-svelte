@@ -11,7 +11,8 @@
         ModalHeader,
         ModalBody,
         ModalFooter,
-        Label, Container, Row, Col, ListGroupItem, ListGroup, DropdownItem
+        Label,
+        ListGroup
     } from "sveltestrap";
     import dayjs from "dayjs";
     import {set, remove, update} from "../firebase";
@@ -81,7 +82,7 @@
         invalidEmail = !String(parentEmail)
             .toLowerCase()
             .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             );
         validEmail = !invalidEmail;
     }

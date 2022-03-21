@@ -5,7 +5,6 @@
     import dayjs from "dayjs";
     import Transact from "./Transact.svelte";
     import {
-        Button,
         ButtonDropdown,
         ButtonGroup,
         Col,
@@ -83,35 +82,6 @@
             ensureAllowanceForWeek(allowanceStart, keys);
             allowanceStart = allowanceStart.add(7, 'day')
         }
-
-
-        // start with the week of the initial payment
-        // add a week to it
-        // for each week afterward until today
-            // determine if an allowance was granted
-        // for each month afterward until today
-            // determine if interest was granted
-
-        // console.log(`new Kid: ${kid.name}`)
-        // let lastAllowance = false;
-        // for (let t in kid.transactions) {
-        //     let transaction = kid.transactions[t];
-        //     let prevAllowanceDay;
-        //     let startOfPrevWeek;
-        //     let prevWeekStart;
-        //     let prevWeekEnd;
-        //     if(!lastAllowance || transaction.name === '💰 Allowance') {
-        //         lastAllowance = transaction;
-        //         prevAllowanceDay = dayjs(parseInt(transaction.id));
-        //         startOfPrevWeek = prevAllowanceDay.startOf('week');
-        //         prevWeekStart = startOfPrevWeek.add(1, 'day');
-        //         prevWeekEnd = prevWeekStart.add(7, 'day');
-        //         console.log(transaction)
-        //         console.log(`Checking to see if ${dayjs(parseInt(transaction.id))} is less than ${prevWeekEnd}`)
-        //     } else {
-        //         console.log(transaction)
-        //     }
-        // }
     }
 
     function handleSpend(e) {

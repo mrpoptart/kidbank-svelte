@@ -4,7 +4,6 @@ import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut} from "firebase/auth";
 import {user, kids} from "./store";
 import dayjs from "dayjs";
-import {get} from 'svelte/store';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,6 +37,7 @@ export const set = (path, value) => {
 }
 
 export const update = (path, value) => {
+   return fbupdate(fbref(db, path), value);
 }
 
 export const onValue = (path, callback) => {
@@ -116,13 +116,6 @@ function earn(kid, value, name) {
    let save = value * (parseFloat(kid.save) / 100);
    let share = (value - save) * (parseFloat(kid.share) / 100);
    let amount = value - save - share;
-   transact(kid, save, share, amount, name);
-}
-
-function spend(kid, amount, name) {
-   this.amount = parseFloat(amount);
-   let save = 0;
-   let share = 0;
    transact(kid, save, share, amount, name);
 }
 

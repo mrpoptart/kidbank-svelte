@@ -6,16 +6,12 @@
    import { onMount } from 'svelte';
    import AddKidModal from "./components/AddKidModal.svelte";
     import {
-        Button, ButtonGroup, Collapse,
+        Button,
         ButtonDropdown,
-        Dropdown,
         DropdownItem,
         DropdownMenu,
         DropdownToggle, Icon,
-        Modal, Nav,
-        Navbar, NavbarBrand, NavbarToggler,
-        NavItem,
-        NavLink
+        Modal,
     } from "sveltestrap";
    import {nanoid} from "nanoid";
 
@@ -57,22 +53,22 @@
             <DropdownToggle color="light" caret>💰 Kid Bank</DropdownToggle>
             <DropdownMenu>
                 <DropdownItem on:click="{()=>{window.location.hash=''}}">
-                    <Icon name="house-door"></Icon>
+                    <Icon name="house-door"/>
                     Home
                 </DropdownItem>
                 {#if $loggedIn}
                     <DropdownItem on:click={toggleAddKid}>
-                        <Icon name="plus-circle"></Icon>
+                        <Icon name="plus-circle"/>
                         Add Kid
                     </DropdownItem>
                     {#each Object.entries($kids) as [id, kid]}
                         <DropdownItem color="primary" on:click="{window.location.hash=`kid/${kid.name}`}">
-                            <Icon name="person"></Icon>
+                            <Icon name="person"/>
                             {kid.name} - {currencyFormatter(kid.spendable)}
                         </DropdownItem>
                     {/each}
                     <DropdownItem on:click={logout}>
-                        <Icon name="door-open"></Icon>
+                        <Icon name="door-open"/>
                         Log Out
                     </DropdownItem>
                 {/if}
