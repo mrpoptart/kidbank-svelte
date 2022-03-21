@@ -36,7 +36,6 @@
 
    function chooseKid(){
       chosenKid.set(hash.get('kid'));
-      console.log(`chosen kid is now ${$chosenKid}`)
    }
 
    function addKid(e){

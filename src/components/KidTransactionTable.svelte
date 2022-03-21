@@ -18,7 +18,7 @@
 
     const getAllowanceClass = (tid, transaction) => {
         let parsedTid = dayjs(parseInt(tid));
-        return parsedTid.valueOf() > lastPayday.valueOf() && transaction.name === '💰 Allowance' ? 'pay' : ''
+        return parsedTid.valueOf() >= lastPayday.valueOf() && transaction.name === '💰 Allowance' ? 'pay' : ''
     }
 </script>
 

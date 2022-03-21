@@ -28,6 +28,7 @@
     if(lastMonday > today) {
         lastMonday = lastMonday.subtract(7, 'day');
     }
+    ensureAllowance()
 
     function transact(time, save, share, amount, name) {
         set(`children/${kid.id}/transactions/${time}`, {
@@ -36,6 +37,81 @@
             amount,
             name,
         })
+    }
+
+    /**
+     *
+     * @param transactionIds {Array}
+     * @returns {boolean}
+     */
+    function checkTransactionsForAllowance(transactionIds){
+        let allowanceFound = false;
+        for (let t in transactionIds) {
+            let transaction = kid.transactions[transactionIds[t]];
+             if (transaction.name === '💰 Allowance') {
+                allowanceFound = true;
+            }
+        }
+        return allowanceFound;
+    }
+
+    function ensureAllowanceForWeek(allowanceStart, keys){
+        let allowanceEnd = allowanceStart.add(7, 'day')
+        let weekKeys = keys.filter(key=>key > allowanceStart && key < allowanceEnd)
+        let foundAllowance = checkTransactionsForAllowance(weekKeys);
+        if(!foundAllowance){
+            let ageAtAllowance = allowanceStart.diff(dayjs(parseInt(kid.birthday)), 'year')
+
+            const time = allowanceStart.valueOf()
+            let name = '💰 Allowance';
+
+            let value = parseFloat(ageAtAllowance);
+            let save = value * (parseFloat(kid.save) / 100);
+            let share = (value - save) * (parseFloat(kid.share) / 100);
+            let amount = value - save - share;
+            transact(time, save, share, amount, name);
+        }
+
+    }
+
+    function ensureAllowance() {
+        let keys = Object.keys(kid.transactions);
+        let initialTransactionId = keys[0];
+        let initialDate = dayjs(parseInt(initialTransactionId));
+        let allowanceStart = initialDate.startOf('week').add(8, 'day')
+        while(allowanceStart.valueOf() < dayjs().valueOf()) {
+            ensureAllowanceForWeek(allowanceStart, keys);
+            allowanceStart = allowanceStart.add(7, 'day')
+        }
+
+
+        // start with the week of the initial payment
+        // add a week to it
+        // for each week afterward until today
+            // determine if an allowance was granted
+        // for each month afterward until today
+            // determine if interest was granted
+
+        // console.log(`new Kid: ${kid.name}`)
+        // let lastAllowance = false;
+        // for (let t in kid.transactions) {
+        //     let transaction = kid.transactions[t];
+        //     let prevAllowanceDay;
+        //     let startOfPrevWeek;
+        //     let prevWeekStart;
+        //     let prevWeekEnd;
+        //     if(!lastAllowance || transaction.name === '💰 Allowance') {
+        //         lastAllowance = transaction;
+        //         prevAllowanceDay = dayjs(parseInt(transaction.id));
+        //         startOfPrevWeek = prevAllowanceDay.startOf('week');
+        //         prevWeekStart = startOfPrevWeek.add(1, 'day');
+        //         prevWeekEnd = prevWeekStart.add(7, 'day');
+        //         console.log(transaction)
+        //         console.log(`Checking to see if ${dayjs(parseInt(transaction.id))} is less than ${prevWeekEnd}`)
+        //     } else {
+        //         console.log(transaction)
+        //     }
+        // }
     }
 
     function handleSpend(e) {

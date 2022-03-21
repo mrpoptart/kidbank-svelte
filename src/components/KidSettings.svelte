@@ -40,7 +40,6 @@
         save=kid.save;
         share=kid.share;
         parentEmail='';
-        console.log(`birthday: ${birthday}`)
     }
 
     function saveKid(){

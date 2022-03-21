@@ -34,13 +34,10 @@ export const login = () => {
 };
 
 export const set = (path, value) => {
-   console.log(`Setting ${path} to ${JSON.stringify(value)}`)
    return fbset(fbref(db, path), value);
 }
 
 export const update = (path, value) => {
-   console.log(`Updating ${path} with ${JSON.stringify(value)}`)
-   return fbupdate(fbref(db, path), value);
 }
 
 export const onValue = (path, callback) => {
@@ -48,7 +45,6 @@ export const onValue = (path, callback) => {
 }
 
 export const remove = (path)=> {
-   console.log(`Deleting ${path}`)
    return fbRemove(fbref(db, path));
 }
 

@@ -25,11 +25,9 @@ class Hash {
 
    onHashUpdate(callback) {
       this.$callbacks.push(callback);
-      console.log(`adding a callback to ${this.$callbacks.length}`)
    }
 
    callHashCallbacks(e){
-      console.log(`hash changed, calling ${hash.$callbacks.length} callbacks`)
       hash.$callbacks.forEach((callback)=>{
          if(typeof(callback)==='function') callback(e);
       })
@@ -45,7 +43,6 @@ class Hash {
             let val = hashArr.shift()
             this.$hash[id] = val;
          }
-         console.log(`updating hash to ${JSON.stringify(this.$hash)}`)
       }
    }
 
