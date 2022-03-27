@@ -10,6 +10,10 @@ export const currencyFormatter = (amount, whole=false) => {
    return output;
 }
 
+export const moneyRound = (str) => {
+   return Math.round(parseFloat(str) * 100) / 100;
+}
+
 class Hash {
    constructor() {
       this.updateHash();

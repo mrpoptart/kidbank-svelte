@@ -40,8 +40,8 @@
     <thead>
     <tr>
         <th style="max-width: 130px">Date</th>
-        <th>Amount</th>
         <th>Description</th>
+        <th>Amount</th>
     </tr>
     </thead>
     <tbody>
@@ -49,8 +49,8 @@
         <tr on:click={()=>{selectedTransaction=transaction; toggle()}}
             class="{getAllowanceClass(tid, transaction)}">
             <td>{dayjs(parseInt(tid)).format('M-D-YYYY')}</td>
-            <td>{currencyFormatter(transaction.amount)}</td>
             <td>{transaction.name}</td>
+            <td>{currencyFormatter(transaction.amount)}</td>
         </tr>
     {/each}
     </tbody>

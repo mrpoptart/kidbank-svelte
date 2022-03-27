@@ -1,10 +1,8 @@
 <script>
     import dayjs from 'dayjs';
-    import {currencyFormatter} from "./helpers";
     import { createEventDispatcher } from 'svelte';
     import {
         Button,
-        DropdownItem,
         Form,
         FormGroup, Icon,
         Input,
@@ -19,7 +17,6 @@
     export let kid;
     export let spend = false;
 
-    let showTransact=false;
     let amount;
     let date;
     let name;
@@ -63,15 +60,17 @@
         reset();
     };
 </script>
-<DropdownItem on:click={toggle}>
-    {#if spend}
+{#if spend}
+    <Button size="lg" danger on:click={toggle}>
         <Icon name="wallet"/>
         Spend
-    {:else}
+    </Button>
+{:else}
+    <Button size="lg" primary on:click={toggle}>
         <Icon name="piggy-bank"/>
         Earn
-    {/if}
-</DropdownItem>
+    </Button>
+{/if}
 <Modal isOpen={open} {toggle}>
     <ModalHeader>What was {spend?'spent':'earned'}?</ModalHeader>
     <ModalBody>

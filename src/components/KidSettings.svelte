@@ -102,7 +102,7 @@
     }
 </script>
 
-<Button style="min-width: 3rem" on:click={toggle}>
+<Button size="lg" style="min-width: 3rem" on:click={toggle}>
     <Icon name="gear-fill"/>
 </Button>
 <Modal isOpen={open} {toggle}>

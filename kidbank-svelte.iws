@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Removed comment">
-      <change beforePath="$PROJECT_DIR$/kidbank-svelte.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iml" afterDir="false" />
+    <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Added allowance and interest backfilling / creation, removed allowance and interest buttons, enlarged button icons">
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kid.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kid.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Transact.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transact.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/KidSettings.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidSettings.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,8 +75,18 @@
       <updated>1640530217982</updated>
       <workItem from="1640530225117" duration="3130000" />
       <workItem from="1647752573556" duration="7195000" />
-      <workItem from="1647814619553" duration="2446000" />
+      <workItem from="1647814619553" duration="4365000" />
+      <workItem from="1648177227714" duration="1868000" />
+      <workItem from="1648303672343" duration="6468000" />
     </task>
+    <task id="LOCAL-00001" summary="Removed comment">
+      <created>1647824261776</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1647824261776</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,6 +105,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Removed comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed comment" />
+    <MESSAGE value="Added allowance and interest backfilling / creation, removed allowance and interest buttons, enlarged button icons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added allowance and interest backfilling / creation, removed allowance and interest buttons, enlarged button icons" />
   </component>
 </project>

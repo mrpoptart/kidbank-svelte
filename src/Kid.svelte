@@ -1,16 +1,13 @@
 <script>
-    import {currencyFormatter, hash} from "./helpers";
-    import {payAllowance, payInterest, set, update} from "./firebase";
+    import {currencyFormatter, hash, moneyRound} from "./helpers";
+    import {set, update} from "./firebase";
     import KidTransactionTable from "./components/KidTransactionTable.svelte";
     import dayjs from "dayjs";
     import Transact from "./Transact.svelte";
     import {
-        ButtonDropdown,
         ButtonGroup,
         Col,
-        Container, DropdownItem,
-        DropdownMenu,
-        DropdownToggle,
+        Container,
         Icon,
         Row, Table
     } from "sveltestrap";
@@ -27,10 +24,11 @@
     if(lastMonday > today) {
         lastMonday = lastMonday.subtract(7, 'day');
     }
-    ensureAllowance()
+    ensureAllowance();
+    ensureInterest();
 
     function transact(time, save, share, amount, name) {
-        set(`children/${kid.id}/transactions/${time}`, {
+        return set(`children/${kid.id}/transactions/${time}`, {
             save,
             share,
             amount,
@@ -41,36 +39,18 @@
     /**
      *
      * @param transactionIds {Array}
+     * @param name {string}
      * @returns {boolean}
      */
-    function checkTransactionsForAllowance(transactionIds){
-        let allowanceFound = false;
+    function checkTransactions(transactionIds, name){
         for (let t in transactionIds) {
             let transaction = kid.transactions[transactionIds[t]];
-             if (transaction.name === '💰 Allowance') {
-                allowanceFound = true;
+             if (transaction.name === name) {
+                 console.log(`${kid.name} ${JSON.stringify(transaction)}`)
+                return true;
             }
         }
-        return allowanceFound;
-    }
-
-    function ensureAllowanceForWeek(allowanceStart, keys){
-        let allowanceEnd = allowanceStart.add(7, 'day')
-        let weekKeys = keys.filter(key=>key > allowanceStart && key < allowanceEnd)
-        let foundAllowance = checkTransactionsForAllowance(weekKeys);
-        if(!foundAllowance){
-            let ageAtAllowance = allowanceStart.diff(dayjs(parseInt(kid.birthday)), 'year')
-
-            const time = allowanceStart.valueOf()
-            let name = '💰 Allowance';
-
-            let value = parseFloat(ageAtAllowance);
-            let save = value * (parseFloat(kid.save) / 100);
-            let share = (value - save) * (parseFloat(kid.share) / 100);
-            let amount = value - save - share;
-            transact(time, save, share, amount, name);
-        }
-
+        return false;
     }
 
     function ensureAllowance() {
@@ -82,6 +62,82 @@
             ensureAllowanceForWeek(allowanceStart, keys);
             allowanceStart = allowanceStart.add(7, 'day')
         }
+    }
+
+    function ensureAllowanceForWeek(allowanceStart, keys){
+        let allowanceEnd = allowanceStart.add(7, 'day')
+        let weekKeys = keys.filter(key=>key > allowanceStart && key < allowanceEnd)
+        let foundAllowance = checkTransactions(weekKeys, '💰 Allowance');
+        if(!foundAllowance){
+            let ageAtAllowance = allowanceStart.diff(dayjs(parseInt(kid.birthday)), 'year')
+
+            const time = allowanceStart.valueOf()
+            let name = '💰 Allowance';
+
+            let value = moneyRound(ageAtAllowance);
+            let save = value * (moneyRound(kid.save) / 100);
+            let share = (value - save) * (moneyRound(kid.share) / 100);
+            let amount = value - save - share;
+            kid.transactions[time] = {
+                amount: amount,
+                id: time,
+                name: name,
+                save: save,
+                share: share,
+            }
+            transact(time, save, share, amount, name);
+        }
+    }
+
+    async function ensureInterestForMonth(interestStart) {
+        let interestEnd = interestStart.startOf('month').add(1, 'month').add(1, 'minute');
+        let keys = Object.keys(kid.transactions);
+        console.log(`${kid.name} checking between: ${interestStart} and ${interestEnd}`)
+        let monthKeys = keys.filter(key=>key > interestStart.valueOf() && key < interestEnd.valueOf())
+        let foundInterest = checkTransactions(monthKeys, '🪙 Interest')
+        if(!foundInterest) {
+            console.log(`No interest found for ${kid.name} on ${interestStart}`)
+            let totalKeys = keys.filter(key => key < interestStart)
+            let totalAmount = 0;
+            let totalSave = 0;
+            let totalShare = 0;
+            totalKeys.forEach((key)=>{
+                let amount = moneyRound(kid.transactions[key].amount);
+                let save = moneyRound(kid.transactions[key].save);
+                let share = moneyRound(kid.transactions[key].share);
+                // console.log(`spend: ${amount} save: ${save} share: ${share}`)
+                totalAmount += amount;
+                totalSave += save;
+                totalShare += share;
+            })
+            // console.log(`totalSpend: ${moneyRound(totalAmount)} totalSave: ${moneyRound(totalSave)} totalShare: ${moneyRound(totalShare)}`)
+            let interestAmount = moneyRound(totalAmount * kid.interest / 100);
+            let interestSave = moneyRound(totalSave * kid.interest / 100);
+            let interestShare = moneyRound(totalShare * kid.interest / 100);
+            const time = interestStart.valueOf() + 1;
+            console.log(`${time}, ${interestSave}, ${interestShare}, ${interestAmount}, ${'🪙 Interest'}`);
+            kid.transactions[time] = {
+                amount: interestAmount,
+                id: time,
+                name: '🪙 Interest',
+                save: interestSave,
+                share: interestShare,
+            }
+            await transact(time, interestSave, interestShare, interestAmount, '🪙 Interest');
+
+        }
+    }
+
+    function ensureInterest() {
+        let keys = Object.keys(kid.transactions);
+        let initialTransactionId = keys[0];
+        let initialDate = dayjs(parseInt(initialTransactionId));
+        let interestStart = initialDate.startOf('month').add(1, 'month').add(1, 'minute');
+        while(interestStart.add(1, 'month').valueOf() < dayjs().valueOf()) {
+            ensureInterestForMonth(interestStart);
+            interestStart = interestStart.add(1, 'month')
+        }
+        ensureInterestForMonth(interestStart, keys);
     }
 
     function handleSpend(e) {
@@ -119,11 +175,11 @@
         let share = 0;
 
         if (e.detail.save) {
-            save = value * (parseFloat(kid.save) / 100);
+            save = value * (moneyRound(kid.save) / 100);
         }
 
         if (e.detail.share) {
-            share = (value - save) * (parseFloat(kid.share) / 100);
+            share = (value - save) * (moneyRound(kid.share) / 100);
         }
 
         let amount = value - save - share;
@@ -180,21 +236,8 @@
 
 
     <ButtonGroup style="width:100%; display:flex">
-        <ButtonDropdown style="width: 100%">
-            <DropdownToggle color="primary" caret>Transact</DropdownToggle>
-            <DropdownMenu style="width: 100%">
-                <Transact kid="{kid}" on:submit={handleSpend} spend/>
-                <Transact kid="{kid}" on:submit={handleEarn}/>
-                <DropdownItem on:click={()=>{payAllowance(kid)}}>
-                    <Icon name="cash"/>
-                    Allowance - {currencyFormatter(dayjs().diff(kid.birthday, 'years'))}
-                </DropdownItem>
-                <DropdownItem on:click={()=>{payInterest(kid)}}>
-                    <Icon name="percent"/>
-                    Interest - {kid.interest}%
-                </DropdownItem>
-            </DropdownMenu>
-        </ButtonDropdown>
+        <Transact kid="{kid}" on:submit={handleSpend} spend/>
+        <Transact kid="{kid}" on:submit={handleEarn}/>
         <KidSettings kid="{kid}" on:save={saveKid}/>
     </ButtonGroup>
 
