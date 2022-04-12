@@ -42,7 +42,7 @@ class Hash {
          console.log(hashArr)
          while(hashArr.length > 0) {
             let id = hashArr.shift()
-            this.$hash[id] = hashArr.shift();
+            this.$hash[id] = decodeURIComponent(hashArr.shift());
          }
       }
    }

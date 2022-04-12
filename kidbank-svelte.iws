@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Added allowance and interest backfilling / creation, removed allowance and interest buttons, enlarged button icons">
+    <list default="true" id="77fa54f7-bd2e-4bcf-9dcd-f0dba9be1240" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kid.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kid.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Transact.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transact.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/KidSettings.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidSettings.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,9 +17,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Nav" />
-        <option value="AddKid" />
-        <option value="KidSettings" />
+        <option value="Auth" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Kid" />
+        <option value="KidTransactionTable" />
       </list>
     </option>
   </component>
@@ -37,10 +36,23 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Kid.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/App.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Auth.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/store.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/helpers.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package-lock.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/scratches/txt.txt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/public/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/components/KidTransactionTable.svelte" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="22pMkSCsus2tsafsrHcaViIVgwt" />
+  <component name="ProjectId" id="21hlmoiFxtPPL0GnaY6B1UqUOGm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -49,44 +61,42 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.google.cloudcode.ide_session_index" value="20211230_0000" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/kidbank-svelte.ipr" />
+    <property name="go.format.on.save.advertiser.fired" value="true" />
+    <property name="go.formatter.settings.were.checked" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="" />
-      <created>1640530217982</created>
+      <changelist id="77fa54f7-bd2e-4bcf-9dcd-f0dba9be1240" name="Changes" comment="" />
+      <created>1638401362245</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1640530217982</updated>
-      <workItem from="1640530225117" duration="3130000" />
-      <workItem from="1647752573556" duration="7195000" />
-      <workItem from="1647814619553" duration="4365000" />
-      <workItem from="1648177227714" duration="1868000" />
-      <workItem from="1648303672343" duration="6468000" />
+      <updated>1638401362245</updated>
+      <workItem from="1638401366120" duration="1063000" />
+      <workItem from="1638511658151" duration="13575000" />
+      <workItem from="1639101357881" duration="22459000" />
+      <workItem from="1641407823861" duration="149000" />
+      <workItem from="1642014274247" duration="569000" />
+      <workItem from="1643826842481" duration="394000" />
+      <workItem from="1648768277403" duration="47000" />
+      <workItem from="1648913654926" duration="1284000" />
+      <workItem from="1649779818540" duration="216000" />
     </task>
-    <task id="LOCAL-00001" summary="Removed comment">
-      <created>1647824261776</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1647824261776</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,10 +112,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed comment" />
-    <MESSAGE value="Added allowance and interest backfilling / creation, removed allowance and interest buttons, enlarged button icons" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added allowance and interest backfilling / creation, removed allowance and interest buttons, enlarged button icons" />
   </component>
 </project>

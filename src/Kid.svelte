@@ -133,6 +133,9 @@
         let initialTransactionId = keys[0];
         let initialDate = dayjs(parseInt(initialTransactionId));
         let interestStart = initialDate.startOf('month').add(1, 'month').add(1, 'minute');
+        if(interestStart > dayjs()) {
+           return;
+        }
         while(interestStart.add(1, 'month').valueOf() < dayjs().valueOf()) {
             ensureInterestForMonth(interestStart);
             interestStart = interestStart.add(1, 'month')
