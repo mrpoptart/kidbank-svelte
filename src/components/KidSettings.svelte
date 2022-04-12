@@ -87,18 +87,19 @@
         validEmail = !invalidEmail;
     }
 
-    async function deleteKid(){
-        console.log(`deleting ${kid.name}`)
-        const parents = Object.keys(kid.parents);
-        const changes = {};
-        changes[`children/${kid.id}`] = null;
-        for (let p in parents) {
-            changes[`parents/${parents[p]}/${kid.id}`] = null;
-        }
-        console.log(JSON.stringify(changes))
-        await update('/', changes);
-        toggle();
-        window.location.hash = '';
+    async function deleteKid() {
+       console.log(`deleting ${kid.name}`)
+       const parents = Object.keys(kid.parents);
+       const changes = {};
+       changes[`children/${kid.id}`] = null;
+       for (let p in parents) {
+          changes[`parents/${parents[p]}/${kid.id}`] = null;
+       }
+       console.log(JSON.stringify(changes))
+       await update('/', changes);
+       toggle();
+       window.location.hash = '';
+       window.location.reload()
     }
 </script>
 
