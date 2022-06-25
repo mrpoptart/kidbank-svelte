@@ -35,7 +35,10 @@
     })
 
     function reset(){
-        birthday=dayjs(kid.birthday).format('YYYY-M-D');
+        console.log('resetting')
+        console.log(kid.birthday)
+        birthday=dayjs(kid.birthday).format('YYYY-MM-DD');
+        console.log(birthday)
         name=kid.name;
         interest=kid.interest;
         save=kid.save;

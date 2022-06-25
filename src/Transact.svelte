@@ -26,7 +26,8 @@
 
     function reset(){
         amount='';
-        date=dayjs().format('YYYY-M-DTHH:mm:ss');
+        date=dayjs().format('YYYY-MM-DDTHH:mm:ss');
+        console.log(date)
         name='';
         save=true;
         share=true;
@@ -59,6 +60,9 @@
         open = !open;
         reset();
     };
+    function onChange(e){
+        console.log(e.target.value)
+    }
 </script>
 {#if spend}
     <Button size="lg" danger on:click={toggle}>
@@ -77,15 +81,15 @@
         <Form>
             <FormGroup>
                 <Label>Date</Label>
-                <Input type="datetime-local" bind:value={date} step="2"/>
+                <Input type="datetime-local" bind:value={date} on:change={onChange} step="2"/>
             </FormGroup>
             <FormGroup>
                 <Label>Name</Label>
-                <Input type="text" bind:value={name} placeholder="What was done?"/>
+                <Input type="text" bind:value={name} placeholder="{spend?'What was bought?':'What was earned?'}"/>
             </FormGroup>
             <FormGroup>
                 <Label>Amount</Label>
-                <Input type="number" bind:value={amount} placeholder="How much was {spend?'spent':'earned'}?"/>
+                <Input type="number" bind:value={amount} placeholder="How much?"/>
             </FormGroup>
         </Form>
         {#if spend}
