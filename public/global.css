@@ -49,6 +49,10 @@ button {
 	outline: none;
 }
 
+.btn-danger {
+	color: #333 !important;
+}
+
 button:disabled {
 	color: #999;
 }
@@ -59,4 +63,9 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+}
+
+.form-control {
+	color: #DDD !important;
+	background-color: #333 !important;
 }

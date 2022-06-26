@@ -38,6 +38,15 @@
       })
    }
 
+   function consolidate(e){
+       console.log(e)
+       let name = e.detail.name;
+       let save = e.detail.save;
+       let share = e.detail.share;
+       let amount = e.detail.amount;
+       transact(new Date().getTime(), save, share, amount, name)
+   }
+
    /**
     *
     * @param transactionIds {Array}
@@ -249,7 +258,7 @@
     <ButtonGroup style="width:100%; display:flex">
         <Transact kid="{kid}" on:submit={handleSpend} spend/>
         <Transact kid="{kid}" on:submit={handleEarn}/>
-        <KidSettings kid="{kid}" on:save={saveKid}/>
+        <KidSettings kid="{kid}" on:consolidate={consolidate} on:save={saveKid}/>
     </ButtonGroup>
 
 

@@ -64,7 +64,7 @@
                     {#each Object.entries($kids) as [id, kid]}
                         <DropdownItem color="primary" on:click="{window.location.hash=`kid/${kid.name}`}">
                             <Icon name="person"/>
-                            {kid.name} - {currencyFormatter(kid.spendable)}
+                            {kid.name}: {currencyFormatter(kid.spendable)}
                         </DropdownItem>
                     {/each}
                     <DropdownItem on:click={logout}>
