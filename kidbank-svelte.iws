@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Many updates to improve UI, UX, etc.">
-      <change afterPath="$PROJECT_DIR$/public/images/glogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Menu.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Welcome.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Parents.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Transact.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transact.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddKidModal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddKidModal.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/KidSettings.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidSettings.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +24,7 @@
         <option value="JavaScript File" />
         <option value="Kid" />
         <option value="KidTransactionTable" />
+        <option value="Parents" />
       </list>
     </option>
   </component>
@@ -72,6 +66,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="com.google.cloudcode.ide_session_index" value="20220815_0001" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
@@ -110,6 +105,14 @@
       <workItem from="1651695456428" duration="36000" />
       <workItem from="1654534828130" duration="2570000" />
     </task>
+    <task id="LOCAL-00001" summary="Many updates to improve UI, UX, etc.">
+      <created>1660578236961</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1660578236961</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

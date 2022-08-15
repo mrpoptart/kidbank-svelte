@@ -12,12 +12,11 @@
         ModalBody,
         ModalFooter,
         Label,
-        ListGroup
     } from "sveltestrap";
     import dayjs from "dayjs";
-    import {set, remove, update} from "../firebase";
+    import {update} from "../firebase";
     import {createEventDispatcher, onMount} from "svelte";
-    import {user} from "../store";
+    import Parents from "./Parents.svelte";
 
     let dispatch = createEventDispatcher();
 
@@ -29,9 +28,6 @@
     let interest;
     let save;
     let share;
-    let parentEmail;
-    let invalidEmail = false;
-    let validEmail = false;
 
     onMount(() => {
         reset();
@@ -46,7 +42,6 @@
         interest = kid.interest;
         save = kid.save;
         share = kid.share;
-        parentEmail = '';
     }
 
     function saveKid() {
@@ -59,34 +54,6 @@
         }
         dispatch('save', updatedKid);
         open = false;
-    }
-
-    async function addParent(e) {
-        e.preventDefault();
-        if(invalidEmail) return;
-        parentEmail = parentEmail.toLowerCase()
-        let emailKey = parentEmail.replace('.', '%2E');
-        console.log(`Adding parent: ${parentEmail}`)
-        await set(`children/${kid.id}/parents/${emailKey}`, true)
-        await set(`parents/${emailKey}/${kid.id}`, true)
-        parentEmail = '';
-    }
-
-    async function deleteParent(email) {
-        await remove(`children/${kid.id}/parents/${email}`);
-        await remove(`parents/${email}/${kid.id}`);
-        if (email === $user.key) {
-            window.location.hash = '';
-            toggle();
-        }
-    }
-    function testEmail(){
-        invalidEmail = !String(parentEmail)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-        validEmail = !invalidEmail;
     }
 
     async function deleteKid() {
@@ -172,29 +139,9 @@
                 </InputGroup>
             </FormGroup>
         </Form>
-        <Form>
-            <FormGroup>
-                <Label>Parents</Label>
-                <ListGroup>
-                    {#each Object.entries(kid.parents) as [email, bool]}
-                        <InputGroup>
-                            <Input style="border-radius: 0; border: none;" type="text" disabled value="{email.replace('%2E','.')}"/>
-                            <Button style="border-radius: 0; border: none;" color="danger" on:click={()=>deleteParent(email)}><Icon name="x-circle-fill"/></Button>
-                        </InputGroup>
-                    {/each}
-                </ListGroup>
-            </FormGroup>
-        </Form>
-        <Form>
-            <FormGroup>
-                <Label for="parentEmail">Add a new parent</Label>
-                <InputGroup>
-                    <Input placeholder="Parent's Email Address" bind:valid="{validEmail}" bind:invalid="{invalidEmail}"
-                           on:keypress={testEmail} type="email" bind:value={parentEmail}/>
-                    <Button on:click={addParent}>Add Parent</Button>
-                </InputGroup>
-            </FormGroup>
-        </Form>
+
+        <Parents {kid} {toggle}/>
+
         <Button color="danger" on:click={deleteKid}>Delete {name}</Button>
         <Button color="primary" on:click={consolidate}>Consolidate all transactions</Button>
     </ModalBody>

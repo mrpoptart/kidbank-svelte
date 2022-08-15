@@ -110,4 +110,15 @@
     :global(label) {
         margin-bottom:0 !important;
     }
+
+    :global(.btn-close) {
+        background: none;
+        color: white;
+        border: none;
+        padding: 1px 20px;
+    }
+
+    :global(.btn-close::after) {
+        content: "X";
+    }
 </style>

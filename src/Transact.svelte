@@ -5,7 +5,7 @@
         Button,
         Form,
         FormGroup, Icon,
-        Input,
+        Input, InputGroup, InputGroupText,
         Modal,
         ModalBody,
         ModalFooter,
@@ -93,12 +93,15 @@
                 <Input invalid={submitted && name.trim() === ''} feedback="Please include a reason"  type="text" bind:value={name} placeholder="For what reason?"/>
             </FormGroup>
             <FormGroup>
-                <Input invalid={submitted && (isNaN(parseFloat(amount)) || parseFloat(amount) <= 0)} feedback="Please provide a positive number"  type="number" bind:value={amount} placeholder="Amount?"/>
+                <InputGroup>
+                    <InputGroupText>$</InputGroupText>
+                    <Input invalid={submitted && (isNaN(parseFloat(amount)) || parseFloat(amount) <= 0)} feedback="Please provide a positive number"  type="number" bind:value={amount} placeholder="Amount?"/>
+                </InputGroup>
             </FormGroup>
         </Form>
         {#if spend}
-            <h3>Spend from:</h3>
-            <FormGroup>
+            <h5>Spend from:</h5>
+            <FormGroup style="display: flex; gap: 10px;">
                 <Input name="spend" type="radio" bind:group={spendFrom} value="spend" label="Spend"/>
                 <Input name="spend" type="radio" bind:group={spendFrom} value="share" label="Share"/>
                 <Input name="spend" type="radio" bind:group={spendFrom} value="save" label="Save"/>
