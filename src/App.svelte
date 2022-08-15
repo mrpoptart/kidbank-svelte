@@ -1,16 +1,12 @@
 <script>
-    import {user, kids, chosenKid, loggedIn, kidsLoading} from './store'
+    import {swipe} from 'svelte-gestures';
+    import {chosenKid, kids, kidsLoading, loggedIn, user} from './store'
     import Kid from "./Kid.svelte";
     import {currencyFormatter, hash} from "./helpers";
     import {set} from "./firebase";
     import {onMount} from 'svelte';
     import AddKidModal from "./components/AddKidModal.svelte";
-    import {
-        Button,
-        Icon,
-        Modal,
-        Spinner,
-    } from "sveltestrap";
+    import {Button, Icon, Modal, Spinner,} from "sveltestrap";
     import {nanoid} from "nanoid";
     import Menu from "./components/Menu.svelte";
     import Welcome from "./components/Welcome.svelte";
@@ -30,9 +26,9 @@
     hash.onHashUpdate(chooseKid)
     onMount(chooseKid)
 
-   function chooseKid(){
-      chosenKid.set(hash.get('kid'));
-   }
+    function chooseKid() {
+        chosenKid.set(hash.get('kid'));
+    }
 
     function addKid(e) {
         toggleAddKid();
@@ -44,6 +40,29 @@
 
     function toggleAddKid() {
         addKidOpen = !addKidOpen;
+    }
+
+    function swipeHandler(e) {
+        let kidsNames = Object.values($kids).map((kid) => {
+            return kid.name
+        })
+        let currentIndex = kidsNames.indexOf($chosenKid);
+        let targetKid = 0;
+        switch (e.detail.direction) {
+            case 'left':
+                console.log('swipe left')
+                if (currentIndex !== (kidsNames.length - 1)) {
+                    targetKid = currentIndex + 1;
+                }
+                break;
+            case 'right':
+                targetKid = currentIndex - 1;
+                if (targetKid < 0) {
+                    targetKid = (kidsNames.length - 1);
+                }
+                break;
+        }
+        window.location.hash = `kid/${kidsNames[targetKid]}`
     }
 </script>
 <div style="width: 100%; display:flex; justify-content:center;">
@@ -81,13 +100,15 @@
             {/if}
 
             {#each Object.entries($kids) as [id, kid]}
-                <Kid kid="{kid}" visible="{kid.name === $chosenKid}"/>
+                <div use:swipe={{timeframe: 300, minSwipeDistance: 100, touchAction: 'pan-y'}} on:swipe={swipeHandler}>
+                    <Kid kid="{kid}" visible="{kid.name === $chosenKid}"/>
+                </div>
             {/each}
         </div>
     {:else}
         <div>
             Loading...&nbsp;
-            <Spinner style="margin-top:3px;" color="light" size="sm" />
+            <Spinner style="margin-top:3px;" color="light" size="sm"/>
         </div>
     {/if}
 </div>
@@ -98,8 +119,9 @@
     :global(a) {
         cursor: pointer
     }
+
     :global(.visually-hidden) {
-        display:none;
+        display: none;
     }
 
     :global(body) {
@@ -108,7 +130,7 @@
     }
 
     :global(label) {
-        margin-bottom:0 !important;
+        margin-bottom: 0 !important;
     }
 
     :global(.btn-close) {
