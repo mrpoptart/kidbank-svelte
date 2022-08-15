@@ -115,32 +115,7 @@
 <Modal isOpen={addKidOpen} toggle="{toggleAddKid}">
     <AddKidModal on:addKid={addKid} on:cancel={toggleAddKid}/>
 </Modal>
+<div style="display:none" class="btn-close visually-hidden"></div>
 <style>
-    :global(a) {
-        cursor: pointer
-    }
-
-    :global(.visually-hidden) {
-        display: none;
-    }
-
-    :global(body) {
-        background-color: #1d3040;
-        color: #bfc2c7;
-    }
-
-    :global(label) {
-        margin-bottom: 0 !important;
-    }
-
-    :global(.btn-close) {
-        background: none;
-        color: white;
-        border: none;
-        padding: 1px 20px;
-    }
-
-    :global(.btn-close::after) {
-        content: "X";
-    }
+    /* Global styles go in ../public/global.css */
 </style>

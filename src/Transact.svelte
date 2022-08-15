@@ -107,7 +107,7 @@
                 <Input name="spend" type="radio" bind:group={spendFrom} value="save" label="Save"/>
             </FormGroup>
         {:else}
-            <FormGroup>
+            <FormGroup style="display: flex; gap: 10px;">
                 <Input label="Save ({kid.save}%)?" type="checkbox" bind:checked={save}/>
                 <Input label="Share ({kid.share}%)?" type="checkbox" bind:checked={share}/>
             </FormGroup>
