@@ -2,7 +2,7 @@ import {getAnalytics} from "firebase/analytics";
 import {getDatabase, remove as fbRemove, onValue as fbOnValue, ref as fbref, set as fbset, update as fbupdate} from "firebase/database";
 import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut} from "firebase/auth";
-import {user, kids} from "./store";
+import {user, kids, kidsLoading} from "./store";
 import dayjs from "dayjs";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -84,6 +84,7 @@ function getKids(user) {
                   kidsObj[childId].saved = saved;
                   kidsObj[childId].shared = shared;
                   kids.set(kidsObj);
+                  kidsLoading.set(false);
             })
          }
    })
@@ -97,6 +98,7 @@ auth.onAuthStateChanged(async fireUser => {
       getKids(fireUser);
    } else {
       user.set(null);
+      kidsLoading.set(false);
    }
 })
 

@@ -39,7 +39,7 @@
 <Table striped>
     <thead>
     <tr>
-        <th style="max-width: 130px">Date</th>
+        <th style="min-width: 110px; max-width: 110px;">Date</th>
         <th>Description</th>
         <th>Amount</th>
     </tr>

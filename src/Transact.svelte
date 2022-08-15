@@ -6,7 +6,6 @@
         Form,
         FormGroup, Icon,
         Input,
-        Label,
         Modal,
         ModalBody,
         ModalFooter,
@@ -23,18 +22,28 @@
     let save;
     let share;
     let spendFrom;
+    let submitted = false;
 
     function reset(){
         amount='';
         date=dayjs().format('YYYY-MM-DDTHH:mm:ss');
-        console.log(date)
         name='';
         save=true;
         share=true;
         spendFrom='spend';
+        submitted = false;
     }
 
     function submit(){
+        submitted = true;
+        if(
+            isNaN(Date.parse(date)) ||
+            isNaN(parseFloat(amount)) ||
+            parseFloat(amount) <= 0 ||
+            name.trim() === ''
+        ) {
+            return
+        }
         let payload
         if(spend){
             payload = {
@@ -53,6 +62,7 @@
             };
         }
         dispatch('submit', payload);
+        submitted = false;
         toggle();
     }
     let open = false;
@@ -60,9 +70,6 @@
         open = !open;
         reset();
     };
-    function onChange(e){
-        console.log(e.target.value)
-    }
 </script>
 {#if spend}
     <Button size="lg" danger on:click={toggle}>
@@ -80,16 +87,13 @@
     <ModalBody>
         <Form>
             <FormGroup>
-                <Label>Date</Label>
-                <Input type="datetime-local" bind:value={date} on:change={onChange} step="2"/>
+                <Input invalid={submitted && isNaN(Date.parse(date))} feedback="Please choose a date" type="datetime-local" bind:value={date} step="2"/>
             </FormGroup>
             <FormGroup>
-                <Label>Name</Label>
-                <Input type="text" bind:value={name} placeholder="{spend?'What was bought?':'What was earned?'}"/>
+                <Input invalid={submitted && name.trim() === ''} feedback="Please include a reason"  type="text" bind:value={name} placeholder="For what reason?"/>
             </FormGroup>
             <FormGroup>
-                <Label>Amount</Label>
-                <Input type="number" bind:value={amount} placeholder="How much?"/>
+                <Input invalid={submitted && (isNaN(parseFloat(amount)) || parseFloat(amount) <= 0)} feedback="Please provide a positive number"  type="number" bind:value={amount} placeholder="Amount?"/>
             </FormGroup>
         </Form>
         {#if spend}

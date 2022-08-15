@@ -30,6 +30,8 @@
     let save;
     let share;
     let parentEmail;
+    let invalidEmail = false;
+    let validEmail = false;
 
     onMount(() => {
         reset();
@@ -61,7 +63,7 @@
 
     async function addParent(e) {
         e.preventDefault();
-        if (parentEmail === '') return;
+        if(invalidEmail) return;
         parentEmail = parentEmail.toLowerCase()
         let emailKey = parentEmail.replace('.', '%2E');
         console.log(`Adding parent: ${parentEmail}`)
@@ -78,12 +80,7 @@
             toggle();
         }
     }
-
-    let invalidEmail = true;
-    let validEmail = false;
-
-    function testEmail() {
-        console.log('testing')
+    function testEmail(){
         invalidEmail = !String(parentEmail)
             .toLowerCase()
             .match(
@@ -157,6 +154,9 @@
                     <Input type="number" bind:value={save}/>
                     <InputGroupText>%</InputGroupText>
                 </InputGroup>
+                <InputGroup>
+                    <Input style="width:100%;" id="saveRange" type="range" step="{5}" min={0} max={100} bind:value={save}/>
+                </InputGroup>
             </FormGroup>
             <FormGroup>
                 <Label for="shareRange">Share Rate (% per allowance, calculated second)</Label>
@@ -167,6 +167,9 @@
                     <Input type="number" bind:value={share}/>
                     <InputGroupText>%</InputGroupText>
                 </InputGroup>
+                <InputGroup>
+                    <Input style="width:100%;" id="shareRange" type="range" step="{5}" min={0} max={100} bind:value={share}/>
+                </InputGroup>
             </FormGroup>
         </Form>
         <Form>
@@ -175,10 +178,8 @@
                 <ListGroup>
                     {#each Object.entries(kid.parents) as [email, bool]}
                         <InputGroup>
-                            <Input type="text" disabled value="{email.replace('%2E','.')}"/>
-                            <Button color="danger" on:click={()=>deleteParent(email)}>
-                                <Icon name="x-circle-fill"/>
-                            </Button>
+                            <Input style="border-radius: 0; border: none;" type="text" disabled value="{email.replace('%2E','.')}"/>
+                            <Button style="border-radius: 0; border: none;" color="danger" on:click={()=>deleteParent(email)}><Icon name="x-circle-fill"/></Button>
                         </InputGroup>
                     {/each}
                 </ListGroup>

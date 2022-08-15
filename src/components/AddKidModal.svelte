@@ -18,12 +18,13 @@
     const dispatch = createEventDispatcher()
 
     function addKid() {
+        submitted = true;
         if (
-            name === '' ||
-            birthday === '' ||
-            initialSpend === null ||
-            initialShare === null ||
-            initialSave === null
+            name.trim() === '' ||
+            isNaN(Date.parse(birthday)) ||
+            isNaN(parseInt(initialSpend)) ||
+            isNaN(parseInt(initialShare)) ||
+            isNaN(parseInt(initialSave))
         ) {
             return;
         }
@@ -49,10 +50,11 @@
 
     function reset(){
         name = '';
-        birthday = dayjs().subtract(4, 'years').format('YYYY-M-D');
+        birthday = dayjs().subtract(4, 'years').format('YYYY-MM-DD');
         initialSpend = null;
         initialShare = null;
         initialSave = null;
+        submitted = false;
     }
 
     onMount(()=>{reset()})
@@ -62,6 +64,7 @@
     let initialSpend;
     let initialShare;
     let initialSave;
+    let submitted = false;
 </script>
 
 
@@ -70,35 +73,35 @@
     <Form>
         <FormGroup>
             <Label for="name">Name</Label>
-            <Input invalid={name===''} feedback="Name is required" bind:value={name} type="text" id="name"
+            <Input invalid={submitted && name.trim() === ''} feedback="Name is required" bind:value={name} type="text" id="name"
                    placeholder="Kid's name"/>
         </FormGroup>
         <FormGroup>
             <Label for="birthday">Birthday</Label>
-            <Input invalid={birthday===''} feedback="Birthday is required" bind:value={birthday} type="date"
+            <Input invalid={submitted && isNaN(Date.parse(birthday))} feedback="Birthday is required" bind:value={birthday} type="date"
                    id="birthday" placeholder="Kid's birthday"/>
         </FormGroup>
         <FormGroup>
-            <Label for="initialSpend">Spend</Label>
+            <Label for="initialSpend">Initial amount the kid has for spending</Label>
             <InputGroup>
                 <InputGroupText>$</InputGroupText>
-                <Input invalid={initialSpend === null} feedback="Spend amount is required" bind:value={initialSpend}
+                <Input invalid={submitted && isNaN(parseInt(initialSpend))} feedback="Spend amount is required" bind:value={initialSpend}
                        type="number" id="initialSpend" placeholder="Initial spend Amount"/>
             </InputGroup>
         </FormGroup>
         <FormGroup>
-            <Label for="initialShare">Share</Label>
+            <Label for="initialShare">Initial amount set aside for charity</Label>
             <InputGroup>
                 <InputGroupText>$</InputGroupText>
-                <Input invalid={initialShare === null} feedback="Share amount is required" bind:value={initialShare}
+                <Input invalid={submitted && isNaN(parseInt(initialShare))} feedback="Share amount is required" bind:value={initialShare}
                        type="number" id="initialShare" placeholder="Initial share Amount"/>
             </InputGroup>
         </FormGroup>
         <FormGroup>
-            <Label for="initialSave">Save</Label>
+            <Label for="initialSave">Initial amount the kid has saved</Label>
             <InputGroup>
                 <InputGroupText>$</InputGroupText>
-                <Input invalid={initialSave === null} feedback="Save amount is required" bind:value={initialSave}
+                <Input invalid={submitted && isNaN(parseInt(initialSave))} feedback="Save amount is required" bind:value={initialSave}
                        type="number" id="initialSave" placeholder="Initial save Amount"/>
             </InputGroup>
         </FormGroup>
