@@ -5,10 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Added swipe left/right gestures for kid to kid">
+      <change afterPath="$PROJECT_DIR$/firestore-debug.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/firestore.rules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/.firebaserc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/database-coverage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/dbseed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/firebase.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/firestore-coverage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/firestore.indexes.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/firestore.rules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/test/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Transact.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transact.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +78,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="com.google.cloudcode.ide_session_index" value="20220815_0001" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.google.cloudcode.ide_session_index" value="20230122_0001" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/rules/node_modules/mocha" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -74,20 +90,100 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="js.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$APPLICATION_CONFIG_DIR$/scratches/js.js" working-dir="$PROJECT_DIR$">
+  <component name="RunManager" selected="Mocha.Child Reading.Authed users don't get children they don't have permissions for">
+    <configuration name="Child Creation" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$/rules</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
+      <test-names>
+        <name value="Child Creation" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Child Creation.authed user can't create a child with no parents" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$/rules</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
+      <test-names>
+        <name value="Child Creation" />
+        <name value="authed user can't create a child with no parents" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Child Reading.Authed user don't get children they don't have permissions for" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$/rules</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
+      <test-names>
+        <name value="Child Reading" />
+        <name value="Authed user don't get children they don't have permissions for" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Child Reading.Authed users don't get children they don't have permissions for" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$/rules</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
+      <test-names>
+        <name value="Child Reading" />
+        <name value="Authed users don't get children they don't have permissions for" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Child Reading.authed user can get all children they have permissions for" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$/rules</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
+      <test-names>
+        <name value="Child Reading" />
+        <name value="authed user can get all children they have permissions for" />
+      </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.js.js" />
+        <item itemvalue="Mocha.Child Reading.Authed users don't get children they don't have permissions for" />
+        <item itemvalue="Mocha.Child Reading.Authed user don't get children they don't have permissions for" />
+        <item itemvalue="Mocha.Child Reading.authed user can get all children they have permissions for" />
+        <item itemvalue="Mocha.Child Creation" />
+        <item itemvalue="Mocha.Child Creation.authed user can't create a child with no parents" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="77fa54f7-bd2e-4bcf-9dcd-f0dba9be1240" name="Changes" comment="" />
+      <changelist id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Added swipe left/right gestures for kid to kid, fixes for global css" />
       <created>1638401362245</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -103,6 +199,9 @@
       <workItem from="1649779818540" duration="216000" />
       <workItem from="1651695456428" duration="36000" />
       <workItem from="1654534828130" duration="2570000" />
+      <workItem from="1673724998684" duration="4979000" />
+      <workItem from="1674311511547" duration="5629000" />
+      <workItem from="1674400082291" duration="6868000" />
     </task>
     <task id="LOCAL-00001" summary="Many updates to improve UI, UX, etc.">
       <created>1660578236961</created>

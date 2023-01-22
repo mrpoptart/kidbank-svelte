@@ -11,17 +11,19 @@ import dayjs from "dayjs";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-   apiKey: "AIzaSyBy3AS4m3rAnmPuVOBONZDFIEMSzY2InAg",
-   authDomain: "dadbank-fcbc6.firebaseapp.com",
-   projectId: "dadbank-fcbc6",
-   storageBucket: "dadbank-fcbc6.appspot.com",
-   messagingSenderId: "746183158777",
-   appId: "1:746183158777:web:e4e91c63baa0ddd6932b28",
-   measurementId: "G-635NKSRBHC"
+    apiKey: "AIzaSyBy3AS4m3rAnmPuVOBONZDFIEMSzY2InAg",
+    authDomain: "dadbank-fcbc6.firebaseapp.com",
+    databaseURL: "https://dadbank-fcbc6-default-rtdb.firebaseio.com",
+    projectId: "dadbank-fcbc6",
+    storageBucket: "dadbank-fcbc6.appspot.com",
+    messagingSenderId: "746183158777",
+    appId: "1:746183158777:web:22c347402ba0a76a932b28",
+    measurementId: "G-79Q150R6KR"
 };
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 getAnalytics(firebaseApp);
+
 
 export const auth = getAuth();
 export const db = getDatabase();
