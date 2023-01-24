@@ -24,9 +24,9 @@ async function getTestEnv() {
     });
 }
 
-async function getAuthenticatedDb() {
+async function getAuthenticatedDb(email = authed_email) {
     let env = await getTestEnv();
-    return env.authenticatedContext('mrp', {email: authed_email, email_verified: true}).firestore()
+    return env.authenticatedContext('mrp', {email, email_verified: true}).firestore()
 }
 
 async function getUnauthenticatedDb() {
@@ -126,6 +126,54 @@ describe("Child Reading", async () => {
         assert.throws(await db.collection('children').where("parents", "array-contains", 'fail@kidbank.com').get)
         await adminDb.collection('children').doc('23456').delete();
     })
-    it(`authed`, async () => {
+});
+describe("Child Updating", async () => {
+    it(`authed user can change their child`, async () => {
+        let adminDb = getAdminDb();
+        await adminDb.collection('children').doc('23456').set({
+            name: "Bob",
+            parents: ['success@kidbank.com']
+        })
+        const db = await getAuthenticatedDb();
+        await db.collection('children').doc('23456').set({
+            name: "Lee",
+        })
+        await adminDb.collection('children').doc('23456').delete();
+    })
+    it(`authed user can add a parent`, async () => {
+        let adminDb = getAdminDb();
+        await adminDb.collection('children').doc('23456').set({
+            name: "Bob",
+            parents: ['success@kidbank.com']
+        })
+        const db = await getAuthenticatedDb();
+        await db.collection('children').doc('23456').set({
+            parents: ['success@kidbank.com', 'success2@kidbank.com']
+        })
+        await adminDb.collection('children').doc('23456').delete();
+    })
+    it(`authed user can't change a child that's not theirs`, async () => {
+        let adminDb = getAdminDb();
+        await adminDb.collection('children').doc('23456').set({
+            name: "Bob",
+            parents: ['fail@kidbank.com']
+        })
+        const db = await getAuthenticatedDb();
+        await assertFails(db.collection('children').doc('23456').set({
+            name: "Lee",
+        }))
+        await adminDb.collection('children').doc('23456').delete();
+    })
+    it(`unauthed user can't change a child that's not theirs`, async () => {
+        let adminDb = getAdminDb();
+        await adminDb.collection('children').doc('23456').set({
+            name: "Bob",
+            parents: ['fail@kidbank.com']
+        })
+        const db = await getUnauthenticatedDb();
+        await assertFails(db.collection('children').doc('23456').set({
+            name: "Lee",
+        }))
+        await adminDb.collection('children').doc('23456').delete();
     })
 });
