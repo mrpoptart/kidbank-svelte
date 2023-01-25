@@ -34,8 +34,7 @@
         toggleAddKid();
         let kid = e.detail;
         const childId = nanoid();
-        set(`parents/${$user.key}/${childId}`, true);
-        set(`children/${childId}/`, kid);
+        set(`${childId}`, kid);
     }
 
     function toggleAddKid() {
@@ -69,6 +68,7 @@
     {#if !$kidsLoading}
         <div style="max-width: 600px;">
             {#if $loggedIn}
+                <p>Welcome {$user.email}</p>
                 <Menu {loggedIn} {toggleAddKid} {kids}/>
                 {#if !$chosenKid}
                     <div style="margin-top:15px; display:flex; flex-direction: column; gap: 15px">

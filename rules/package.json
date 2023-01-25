@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "emulate": "firebase emulators:start"
+    "emulate": "firebase emulators:start",
+    "push:rules": "firebase deploy --only firestore:rules"
   },
   "keywords": [],
   "author": "",

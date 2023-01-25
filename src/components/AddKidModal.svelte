@@ -38,7 +38,7 @@
             transactions: {},
             parents: {},
         };
-        child.parents[$user.key] = true;
+        child.parents = [$user.email];
         child.transactions[new Date().getTime()] = {
             name: "Initial Amount",
             amount: initialSpend,

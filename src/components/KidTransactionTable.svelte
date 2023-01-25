@@ -9,7 +9,7 @@
     export let transactions;
 
     function del(tid) {
-        remove(`children/${kidId}/transactions/${tid}`)
+        remove(`${kidId}/transactions/${tid}`)
     }
 
     let selectedTransaction;

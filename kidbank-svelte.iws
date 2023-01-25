@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Added swipe left/right gestures for kid to kid">
-      <change afterPath="$PROJECT_DIR$/firestore-debug.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/firestore.rules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/.firebaserc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/database-coverage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/dbseed.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/firebase.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/firestore-coverage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/firestore.indexes.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/firestore.rules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules/test/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/rules/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,16 +42,17 @@
     <option name="indexEntireGoPath" value="true" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Kid.svelte" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Auth.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/public/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:////davyjoneslocker/docker/henry/html/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package-lock.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/store.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/KidTransactionTable.svelte" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/App.svelte" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/package.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/helpers.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/public/index.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/package-lock.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Kid.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Auth.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/App.svelte" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/store.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -90,9 +78,9 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Mocha.Child Reading.Authed users don't get children they don't have permissions for">
-    <configuration name="Child Creation" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
+  <component name="RunManager" selected="Mocha.Seeds Data">
+    <configuration name="Child Deleting" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
       <working-directory>$PROJECT_DIR$/rules</working-directory>
@@ -102,12 +90,12 @@
       <test-kind>SUITE</test-kind>
       <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
       <test-names>
-        <name value="Child Creation" />
+        <name value="Child Deleting" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Child Creation.authed user can't create a child with no parents" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
+    <configuration name="Child Deleting.authed user can delete their child" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
       <working-directory>$PROJECT_DIR$/rules</working-directory>
@@ -117,13 +105,13 @@
       <test-kind>TEST</test-kind>
       <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
       <test-names>
-        <name value="Child Creation" />
-        <name value="authed user can't create a child with no parents" />
+        <name value="Child Deleting" />
+        <name value="authed user can delete their child" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Child Reading.Authed user don't get children they don't have permissions for" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
+    <configuration name="Child Updating.unauthed user can't change a child that's not theirs" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
       <working-directory>$PROJECT_DIR$/rules</working-directory>
@@ -133,13 +121,28 @@
       <test-kind>TEST</test-kind>
       <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
       <test-names>
-        <name value="Child Reading" />
-        <name value="Authed user don't get children they don't have permissions for" />
+        <name value="Child Updating" />
+        <name value="unauthed user can't change a child that's not theirs" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Child Reading.Authed users don't get children they don't have permissions for" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
+    <configuration name="Seeds Data" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$/rules</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
+      <test-names>
+        <name value="Seeds Data" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Transactions.authed user can add a transaction to their child" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
       <working-directory>$PROJECT_DIR$/rules</working-directory>
@@ -149,34 +152,18 @@
       <test-kind>TEST</test-kind>
       <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
       <test-names>
-        <name value="Child Reading" />
-        <name value="Authed users don't get children they don't have permissions for" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Child Reading.authed user can get all children they have permissions for" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$/rules</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
-      <test-names>
-        <name value="Child Reading" />
-        <name value="authed user can get all children they have permissions for" />
+        <name value="Transactions" />
+        <name value="authed user can add a transaction to their child" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Mocha.Child Reading.Authed users don't get children they don't have permissions for" />
-        <item itemvalue="Mocha.Child Reading.Authed user don't get children they don't have permissions for" />
-        <item itemvalue="Mocha.Child Reading.authed user can get all children they have permissions for" />
-        <item itemvalue="Mocha.Child Creation" />
-        <item itemvalue="Mocha.Child Creation.authed user can't create a child with no parents" />
+        <item itemvalue="Mocha.Seeds Data" />
+        <item itemvalue="Mocha.Transactions.authed user can add a transaction to their child" />
+        <item itemvalue="Mocha.Child Updating.unauthed user can't change a child that's not theirs" />
+        <item itemvalue="Mocha.Child Deleting.authed user can delete their child" />
+        <item itemvalue="Mocha.Child Deleting" />
       </list>
     </recent_temporary>
   </component>
@@ -240,7 +227,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Many updates to improve UI, UX, etc." />
@@ -251,5 +237,23 @@
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rules/test/test.js</url>
+          <line>172</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rules/test/test.js</url>
+          <line>169</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

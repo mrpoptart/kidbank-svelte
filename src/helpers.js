@@ -27,11 +27,11 @@ class Hash {
 
     onHashUpdate(callback) {
         this.$callbacks.push(callback);
-        console.log(`adding a callback to ${this.$callbacks.length}`)
+        // console.log(`adding a callback to ${this.$callbacks.length}`)
     }
 
     callHashCallbacks(e) {
-        console.log(`hash changed, calling ${hash.$callbacks.length} callbacks`)
+        // console.log(`hash changed, calling ${hash.$callbacks.length} callbacks`)
         hash.$callbacks.forEach((callback) => {
             if (typeof (callback) === 'function') callback(e);
         })
@@ -41,7 +41,7 @@ class Hash {
       this.$hash = {};
       if (window.location.hash) {
          let hashArr = window.location.hash.split('#')[1].split('/');
-         console.log(hashArr)
+         // console.log(hashArr)
          while(hashArr.length > 0) {
             let id = hashArr.shift()
             this.$hash[id] = decodeURIComponent(hashArr.shift());

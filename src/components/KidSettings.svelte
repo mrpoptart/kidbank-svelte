@@ -14,7 +14,7 @@
         Label,
     } from "sveltestrap";
     import dayjs from "dayjs";
-    import {update} from "../firebase";
+    import {update, remove} from "../firebase";
     import {createEventDispatcher, onMount} from "svelte";
     import Parents from "./Parents.svelte";
 
@@ -34,10 +34,7 @@
     })
 
     function reset() {
-        console.log('resetting')
-        console.log(kid.birthday)
         birthday = dayjs(kid.birthday).format('YYYY-MM-DD');
-        console.log(birthday)
         name = kid.name;
         interest = kid.interest;
         save = kid.save;
@@ -58,14 +55,7 @@
 
     async function deleteKid() {
         console.log(`deleting ${kid.name}`)
-        const parents = Object.keys(kid.parents);
-        const changes = {};
-        changes[`children/${kid.id}`] = null;
-        for (let p in parents) {
-            changes[`parents/${parents[p]}/${kid.id}`] = null;
-        }
-        console.log(JSON.stringify(changes))
-        await update('/', changes);
+        await remove(kid.id)
         toggle();
         window.location.hash = '';
         window.location.reload()
@@ -73,19 +63,14 @@
 
     async function consolidate() {
         console.log(`consolidating ${kid.name}`)
-        const transactions = Object.keys(kid.transactions);
-        const changes = {};
-        let payload = {
-            amount: kid.spendable,
+        kid.transactions = {};
+        kid.transactions[new Date().getTime()] = {
             name: 'Initial Amount',
+            amount: kid.spendable,
             save: kid.saved,
             share: kid.shared,
         };
-        await dispatch('consolidate', payload);
-        for (let t in transactions) {
-            changes[`children/${kid.id}/transactions/${transactions[t]}`] = null;
-        }
-        await update(`/`, changes);
+        await dispatch('consolidate', kid);
         toggle();
     }
 </script>
