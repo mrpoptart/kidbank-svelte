@@ -5,12 +5,20 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear --port 8080"
+    "start": "sirv public --no-clear --port 8080",
+    "emulate": "firebase emulators:start",
+    "cypress:test": "cypress run",
+    "cypress:open": "cypress open",
+    "rules:test": "mocha",
+    "rules:push": "firebase deploy --only firestore:rules"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^2.0.5",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-replace": "^5.0.2",
+    "cypress": "^12.4.0",
+    "firebase-admin": "^11.5.0",
     "mocha": "^10.2.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",

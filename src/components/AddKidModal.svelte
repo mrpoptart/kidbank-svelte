@@ -109,6 +109,6 @@
 
 </ModalBody>
 <ModalFooter>
-    <Button on:click={addKid} color="primary">Add {name}</Button>
     <Button on:click={()=>dispatch('cancel')} color="secondary">Cancel</Button>
+    <Button id="add-kid-confirm" on:click={addKid} color="primary">Add {name}</Button>
 </ModalFooter>

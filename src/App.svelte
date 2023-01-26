@@ -87,7 +87,7 @@
                             </div>
                         {/each}
                         <div style="width: 100%">
-                            <Button style="padding: 30px 0" block color="success" on:click="{toggleAddKid}">
+                            <Button id="add-kid-btn" style="padding: 30px 0" block color="success" on:click="{toggleAddKid}">
                                 <div style="font-size: 40px; line-height: 30px;">
                                     <Icon name="plus-circle"/>
                                     Add Kid
@@ -104,7 +104,7 @@
                     </div>
                 {/each}
 
-                <p style="text-align: center; margin-top: 10px; font-size: small">
+                <p id="welcome-email" style="text-align: center; margin-top: 10px; font-size: small">
                     Logged in as {$user.email}
                     <br>
                     <Button color="link" on:click={logout}>Log Out</Button>

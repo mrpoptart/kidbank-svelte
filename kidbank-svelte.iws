@@ -5,13 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="firestore v1">
+      <change afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cypress/e2e/1-home-login/login.cy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firestore-debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/firestore-debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firestore.rules" beforeDir="false" afterPath="$PROJECT_DIR$/firestore.rules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Transact.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transact.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/.firebaserc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/database-coverage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/dbseed.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/firebase.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/firestore-coverage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/firestore.indexes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/firestore.rules" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/test/test.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +36,10 @@
       <list>
         <option value="Auth" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Kid" />
         <option value="KidTransactionTable" />
         <option value="Parents" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -71,32 +84,19 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.google.cloudcode.ide_session_index" value="20230122_0001" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/rules/node_modules/mocha" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu\home\morgan\kidbank-svelte" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Mocha.Seeds Data">
-    <configuration name="Child Deleting" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
-      <node-options />
-      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$/rules</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>SUITE</test-kind>
-      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
-      <test-names>
-        <name value="Child Deleting" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Mocha.It should create a kid">
     <configuration name="Child Deleting.authed user can delete their child" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
       <node-options />
@@ -126,6 +126,21 @@
       <test-names>
         <name value="Child Updating" />
         <name value="unauthed user can't change a child that's not theirs" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="It should create a kid" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/cypress/e2e/2-create-kid/create.cy.js</test-file>
+      <test-names>
+        <name value="It should create a kid" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -162,11 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.It should create a kid" />
         <item itemvalue="Mocha.Seeds Data" />
         <item itemvalue="Mocha.Transactions.authed user can add a transaction to their child" />
         <item itemvalue="Mocha.Child Updating.unauthed user can't change a child that's not theirs" />
         <item itemvalue="Mocha.Child Deleting.authed user can delete their child" />
-        <item itemvalue="Mocha.Child Deleting" />
       </list>
     </recent_temporary>
   </component>
