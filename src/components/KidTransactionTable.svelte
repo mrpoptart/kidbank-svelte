@@ -1,7 +1,7 @@
 <script>
     import dayjs from "dayjs";
     import {currencyFormatter} from "../helpers";
-    import {remove, set} from "../firebase";
+    import {set} from "../firebase";
     import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Table} from "sveltestrap";
 
     export let kid;

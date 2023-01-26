@@ -8,11 +8,12 @@ import {
     query,
     setDoc,
     updateDoc,
-    where
+    where,
+    connectFirestoreEmulator,
 } from "firebase/firestore";
 
 import {initializeApp} from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut} from "firebase/auth";
+import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut, connectAuthEmulator} from "firebase/auth";
 import {kids, kidsLoading, user} from "./store";
 import dayjs from "dayjs";
 
@@ -36,7 +37,14 @@ const firebaseApp = initializeApp(firebaseConfig);
 getAnalytics(firebaseApp);
 
 export const auth = getAuth();
-export const db = getFirestore(firebaseApp);
+export let db;
+if(!isProduction){
+    connectAuthEmulator(auth, "http://localhost:9099");
+    db = getFirestore();
+    connectFirestoreEmulator(db, 'localhost', 8000);
+} else{
+    db = getFirestore(firebaseApp);
+}
 
 export const logout = async () => {
     await signOut(auth)

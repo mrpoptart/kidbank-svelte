@@ -3,7 +3,7 @@
     import {chosenKid, kids, kidsLoading, loggedIn, user} from './store'
     import Kid from "./Kid.svelte";
     import {currencyFormatter, hash} from "./helpers";
-    import {set} from "./firebase";
+    import {set, logout} from "./firebase";
     import {onMount} from 'svelte';
     import AddKidModal from "./components/AddKidModal.svelte";
     import {Button, Icon, Modal, Spinner,} from "sveltestrap";
@@ -28,6 +28,9 @@
 
     function chooseKid() {
         chosenKid.set(hash.get('kid'));
+        kids.subscribe(kiddos=>{
+            console.log(kiddos);
+        })
     }
 
     function addKid(e) {
@@ -68,7 +71,6 @@
     {#if !$kidsLoading}
         <div style="max-width: 600px;">
             {#if $loggedIn}
-                <p>Welcome {$user.email}</p>
                 <Menu {loggedIn} {toggleAddKid} {kids}/>
                 {#if !$chosenKid}
                     <div style="margin-top:15px; display:flex; flex-direction: column; gap: 15px">
@@ -95,15 +97,23 @@
                         </div>
                     </div>
                 {/if}
+
+                {#each Object.entries($kids) as [id, kid]}
+                    <div use:swipe={{timeframe: 300, minSwipeDistance: 100, touchAction: 'pan-y'}} on:swipe={swipeHandler}>
+                        <Kid kid="{kid}" visible="{kid.name === $chosenKid}"/>
+                    </div>
+                {/each}
+
+                <p style="text-align: center; margin-top: 10px; font-size: small">
+                    Logged in as {$user.email}
+                    <br>
+                    <Button color="link" on:click={logout}>Log Out</Button>
+                </p>
+
+
             {:else}
                 <Welcome/>
             {/if}
-
-            {#each Object.entries($kids) as [id, kid]}
-                <div use:swipe={{timeframe: 300, minSwipeDistance: 100, touchAction: 'pan-y'}} on:swipe={swipeHandler}>
-                    <Kid kid="{kid}" visible="{kid.name === $chosenKid}"/>
-                </div>
-            {/each}
         </div>
     {:else}
         <div>
