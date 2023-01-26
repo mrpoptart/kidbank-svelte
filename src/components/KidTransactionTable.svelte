@@ -1,15 +1,15 @@
 <script>
     import dayjs from "dayjs";
     import {currencyFormatter} from "../helpers";
-    import {remove} from "../firebase";
+    import {remove, set} from "../firebase";
     import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Table} from "sveltestrap";
 
-    export let kidId;
+    export let kid;
     export let lastPayday;
-    export let transactions;
 
     function del(tid) {
-        remove(`${kidId}/transactions/${tid}`)
+        delete kid.transactions[tid]
+        set(kid.id, kid)
     }
 
     let selectedTransaction;
@@ -45,7 +45,7 @@
     </tr>
     </thead>
     <tbody>
-    {#each Object.entries(transactions).reverse() as [tid, transaction]}
+    {#each Object.entries(kid.transactions).sort().reverse() as [tid, transaction]}
         <tr on:click={()=>{selectedTransaction=transaction; toggle()}}
             class="{getAllowanceClass(tid, transaction)}">
             <td>{dayjs(parseInt(tid)).format('M-D-YYYY')}</td>

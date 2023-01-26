@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="Added swipe left/right gestures for kid to kid">
+    <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="firestore v1">
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rules/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/rules/package.json" afterDir="false" />
@@ -232,7 +232,8 @@
     <MESSAGE value="Many updates to improve UI, UX, etc." />
     <MESSAGE value="Fix close buttons, separate parents into sub component, fix for parents issues, improvements for transaction text" />
     <MESSAGE value="Added swipe left/right gestures for kid to kid" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added swipe left/right gestures for kid to kid" />
+    <MESSAGE value="firestore v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="firestore v1" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
