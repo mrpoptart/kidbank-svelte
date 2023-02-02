@@ -28,9 +28,6 @@
 
     function chooseKid() {
         chosenKid.set(hash.get('kid'));
-        kids.subscribe(kiddos=>{
-            console.log(kiddos);
-        })
     }
 
     function addKid(e) {
@@ -76,7 +73,7 @@
                     <div style="margin-top:15px; display:flex; flex-direction: column; gap: 15px">
                         {#each Object.entries($kids) as [id, kid]}
                             <div style="width: 100%">
-                                <Button style="padding: 30px 50px" block color="primary"
+                                <Button id="kid-{id}" style="padding: 30px 50px" block color="primary"
                                         on:click="{window.location.hash=`kid/${kid.name}`}">
                                     <div style="font-size: 40px; line-height: 30px;">
                                         <Icon name="person-circle"/>

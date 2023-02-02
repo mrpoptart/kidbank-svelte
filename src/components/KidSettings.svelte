@@ -42,6 +42,7 @@
     }
 
     function saveKid() {
+        console.log('saving')
         let updatedKid = {
             birthday,
             name,
@@ -50,7 +51,6 @@
             share,
         }
         dispatch('save', updatedKid);
-        open = false;
     }
 
     async function deleteKid() {
@@ -93,34 +93,28 @@
             <FormGroup>
                 <Label for="saveRange">Interest Rate (% per month)</Label>
                 <InputGroup>
-                    <Input type="number" bind:value={interest}/>
+                    <Input on:change={saveKid} type="number" bind:value={interest}/>
                     <InputGroupText>%</InputGroupText>
                 </InputGroup>
             </FormGroup>
             <FormGroup>
                 <Label for="saveRange">Save Rate (% per allowance, calculated first)</Label>
                 <InputGroup>
-                    <Input id="saveRange" type="range" step="{5}" min={0} max={100} bind:value={save}/>
-                </InputGroup>
-                <InputGroup>
-                    <Input type="number" bind:value={save}/>
+                    <Input on:change={saveKid} type="number" bind:value={save}/>
                     <InputGroupText>%</InputGroupText>
                 </InputGroup>
                 <InputGroup>
-                    <Input style="width:100%;" id="saveRange" type="range" step="{5}" min={0} max={100} bind:value={save}/>
+                    <Input on:change={saveKid} style="width:100%;" id="saveRange" type="range" step="{5}" min={0} max={100} bind:value={save}/>
                 </InputGroup>
             </FormGroup>
             <FormGroup>
                 <Label for="shareRange">Share Rate (% per allowance, calculated second)</Label>
                 <InputGroup>
-                   <Input id="shareRange" type="range" step="{5}" min={0} max={100} bind:value={share}/>
-                </InputGroup>
-                <InputGroup>
-                    <Input type="number" bind:value={share}/>
+                    <Input on:change={saveKid} type="number" bind:value={share}/>
                     <InputGroupText>%</InputGroupText>
                 </InputGroup>
                 <InputGroup>
-                    <Input style="width:100%;" id="shareRange" type="range" step="{5}" min={0} max={100} bind:value={share}/>
+                    <Input on:change={saveKid} style="width:100%;" id="shareRange" type="range" step="{5}" min={0} max={100} bind:value={share}/>
                 </InputGroup>
             </FormGroup>
         </Form>
@@ -131,8 +125,7 @@
         <Button color="primary" on:click={consolidate}>Consolidate all transactions</Button>
     </ModalBody>
     <ModalFooter>
-        <Button color="secondary" on:click={toggle}>Close</Button>
-        <Button color="primary" on:click={saveKid}>Save</Button>
+        <Button color="primary" on:click={open=false}>Done</Button>
     </ModalFooter>
 </Modal>
 

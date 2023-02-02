@@ -5,26 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="firestore v1">
-      <change afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/e2e/1-home-login/login.cy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cypress/e2e/3-transactions/transactions.cy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-create-kid/create.cy.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/e2e/2-create-kid/create.cy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase-debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/firebase-debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firestore-debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/firestore-debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firestore.rules" beforeDir="false" afterPath="$PROJECT_DIR$/firestore.rules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/.firebaserc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/database-coverage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/dbseed.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/firebase.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/firestore-coverage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/firestore.indexes.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/firestore.rules" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules/test/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/KidSettings.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidSettings.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Parents.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Parents.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +80,7 @@
     <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -207,6 +199,9 @@
       <workItem from="1673724998684" duration="4979000" />
       <workItem from="1674311511547" duration="5629000" />
       <workItem from="1674400082291" duration="6868000" />
+      <workItem from="1674876162733" duration="21000" />
+      <workItem from="1674878926502" duration="1160000" />
+      <workItem from="1675370800713" duration="25000" />
     </task>
     <task id="LOCAL-00001" summary="Many updates to improve UI, UX, etc.">
       <created>1660578236961</created>
@@ -263,13 +258,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rules/test/test.js</url>
           <line>172</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rules/test/test.js</url>
           <line>169</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

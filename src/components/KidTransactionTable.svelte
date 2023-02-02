@@ -45,12 +45,12 @@
     </tr>
     </thead>
     <tbody>
-    {#each Object.entries(kid.transactions).sort().reverse() as [tid, transaction]}
-        <tr on:click={()=>{selectedTransaction=transaction; toggle()}}
-            class="{getAllowanceClass(tid, transaction)}">
-            <td>{dayjs(parseInt(tid)).format('M-D-YYYY')}</td>
-            <td>{transaction.name}</td>
-            <td>{currencyFormatter(transaction.amount)}</td>
+    {#each Object.keys(kid.transactions).sort().reverse() as key, i}
+        <tr id="t-{i}" on:click={()=>{selectedTransaction=kid.transactions[key]; toggle()}}
+            class="{getAllowanceClass(key, kid.transactions[key])}">
+            <td>{dayjs(parseInt(key)).format('M-D-YYYY')}</td>
+            <td>{kid.transactions[key].name}</td>
+            <td>{currencyFormatter(kid.transactions[key].amount)}</td>
         </tr>
     {/each}
     </tbody>

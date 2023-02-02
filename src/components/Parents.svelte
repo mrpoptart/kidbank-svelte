@@ -1,7 +1,8 @@
 <script>
     import {Button, Form, FormGroup, Icon, Input, InputGroup, Label, ListGroup} from "sveltestrap";
-    import {remove, set} from "../firebase";
+    import {set} from "../firebase";
     import {user} from "../store";
+
     export let kid;
     export let toggle;
     let parentEmail;
@@ -10,7 +11,7 @@
     async function addParent(e) {
         e.preventDefault();
         emailInvalid();
-        if(invalidEmail) return;
+        if (invalidEmail) return;
         parentEmail = parentEmail.toLowerCase()
         console.log(`Adding parent: ${parentEmail}`)
         kid.parents.push(parentEmail)
@@ -19,15 +20,23 @@
     }
 
     async function deleteParent(email) {
-        let parentIndex = kid.parents.indexOf(email)
-        kid.parents.splice(parentIndex, 1);
+        if (kid.parents.length === 1) {
+            return
+        }
+        if (email === $user.email) {
+            if(!confirm("Remove yourself? \nThis kid will no longer be part of your account")){
+                return;
+            }
+        }
+        kid.parents.splice(kid.parents.indexOf(email), 1);
         await set(kid.id, kid)
         if (email === $user.email) {
             window.location.hash = '';
             toggle();
         }
     }
-    function emailInvalid(){
+
+    function emailInvalid() {
         invalidEmail = !parentEmail || !String(parentEmail)
             .toLowerCase()
             .match(
@@ -40,10 +49,15 @@
     <FormGroup>
         <Label>Parents</Label>
         <ListGroup>
-            {#each Object.entries(kid.parents) as [i,parentEmail]}
+            {#each Object.entries(kid.parents) as [i, parentEmail]}
                 <InputGroup style="overflow: hidden; border-radius: 5px; margin-bottom: 2px;">
                     <Input style="border-radius: 0; border: none;" type="text" disabled value="{parentEmail}"/>
-                    <Button style="border-radius: 0; border: none;" color="danger" on:click={()=>deleteParent(parentEmail)}><Icon name="x-circle-fill"/></Button>
+                    {#if kid.parents.length > 1}
+                        <Button style="border-radius: 0; border: none;" color="danger"
+                                on:click={()=>deleteParent(parentEmail)}>
+                            <Icon name="x-circle-fill"/>
+                        </Button>
+                    {/if}
                 </InputGroup>
             {/each}
         </ListGroup>

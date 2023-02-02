@@ -10,18 +10,13 @@ import {
     updateDoc,
     where,
     connectFirestoreEmulator,
+    enableIndexedDbPersistence,
 } from "firebase/firestore";
-
 import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut, connectAuthEmulator} from "firebase/auth";
 import {kids, kidsLoading, user} from "./store";
 import dayjs from "dayjs";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyBy3AS4m3rAnmPuVOBONZDFIEMSzY2InAg",
     authDomain: "dadbank-fcbc6.firebaseapp.com",
@@ -38,12 +33,19 @@ getAnalytics(firebaseApp);
 
 export const auth = getAuth();
 export let db;
-if(!isProduction){
-    connectAuthEmulator(auth, "http://localhost:9099");
-    db = getFirestore();
-    connectFirestoreEmulator(db, 'localhost', 8000);
-} else{
-    db = getFirestore(firebaseApp);
+async function init(){
+    if(window.location.hostname === 'localhost'){
+        connectAuthEmulator(auth, "http://localhost:9099");
+        db = getFirestore();
+        connectFirestoreEmulator(db, 'localhost', 8000);
+    } else{
+        db = getFirestore(firebaseApp);
+    }
+    try{
+        await enableIndexedDbPersistence(db)
+    } catch(e) {
+        console.log(e.code)
+    }
 }
 
 export const logout = async () => {
@@ -132,3 +134,5 @@ function transact(kid, save, share, amount, name) {
         name,
     })
 }
+
+init();
