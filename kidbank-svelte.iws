@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="firestore v1">
-      <change afterPath="$PROJECT_DIR$/cypress/e2e/3-transactions/transactions.cy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-create-kid/create.cy.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/e2e/2-create-kid/create.cy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase-debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/firebase-debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firestore-debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/firestore-debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kidbank-svelte.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/KidSettings.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidSettings.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/KidTransactionTable.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Parents.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Parents.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Welcome.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Welcome.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +28,7 @@
         <option value="KidTransactionTable" />
         <option value="Parents" />
         <option value="JavaScript File" />
+        <option value="Signup" />
       </list>
     </option>
   </component>
@@ -49,17 +47,16 @@
     <option name="indexEntireGoPath" value="true" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/public/index.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:////davyjoneslocker/docker/henry/html/index.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/package-lock.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/store.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/components/KidTransactionTable.svelte" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/package.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/helpers.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Kid.svelte" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Auth.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/public/index.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/App.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Auth.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Kid.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/components/KidTransactionTable.svelte" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/helpers.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/store.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -72,49 +69,74 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.google.cloudcode.ide_session_index" value="20230122_0001" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs.mocha.mocha_node_package_dir": "/Users/morgan.engel/Desktop/Personal/kidbank-svelte/node_modules/mocha",
+    "nodejs_package_manager_path": "npm",
+    "ruby.rails.projectView.checked": "true",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ]
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="\\wsl$\Ubuntu\home\morgan\kidbank-svelte" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+    </key>
   </component>
-  <component name="RunManager" selected="Mocha.It should create a kid">
-    <configuration name="Child Deleting.authed user can delete their child" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
+  <component name="RunManager" selected="Node.js.admin.js">
+    <configuration name="admin.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/scripts/admin.js" working-dir="$PROJECT_DIR$/scripts">
+      <method v="2" />
+    </configuration>
+    <configuration name="Child Reading" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
       <node-options />
-      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$/rules</working-directory>
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
       <pass-parent-env>true</pass-parent-env>
       <ui>bdd</ui>
       <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/scripts/admin.js</test-file>
       <test-names>
-        <name value="Child Deleting" />
-        <name value="authed user can delete their child" />
+        <name value="Child Reading" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Child Updating.unauthed user can't change a child that's not theirs" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
+    <configuration name="Child Reading.authed user can list all children they have permissions for" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
       <node-options />
-      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$/rules</working-directory>
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
       <pass-parent-env>true</pass-parent-env>
       <ui>bdd</ui>
       <extra-mocha-options />
       <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
+      <test-file>$PROJECT_DIR$/test/test.js</test-file>
+      <test-names>
+        <name value="Child Reading" />
+        <name value="authed user can list all children they have permissions for" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Child Updating.unauthed user can't change a child that's not theirs (1)" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/test/test.js</test-file>
       <test-names>
         <name value="Child Updating" />
         <name value="unauthed user can't change a child that's not theirs" />
@@ -136,44 +158,13 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Seeds Data" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
-      <node-options />
-      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$/rules</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>SUITE</test-kind>
-      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
-      <test-names>
-        <name value="Seeds Data" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Transactions.authed user can add a transaction to their child" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>wsl://Ubuntu@/home/morgan/.nvm/versions/node/v17.7.2/bin/node</node-interpreter>
-      <node-options />
-      <mocha-package>$PROJECT_DIR$/rules/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$/rules</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/rules/test/test.js</test-file>
-      <test-names>
-        <name value="Transactions" />
-        <name value="authed user can add a transaction to their child" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.admin.js" />
+        <item itemvalue="Mocha.Child Reading" />
+        <item itemvalue="Mocha.Child Reading.authed user can list all children they have permissions for" />
+        <item itemvalue="Mocha.Child Updating.unauthed user can't change a child that's not theirs (1)" />
         <item itemvalue="Mocha.It should create a kid" />
-        <item itemvalue="Mocha.Seeds Data" />
-        <item itemvalue="Mocha.Transactions.authed user can add a transaction to their child" />
-        <item itemvalue="Mocha.Child Updating.unauthed user can't change a child that's not theirs" />
-        <item itemvalue="Mocha.Child Deleting.authed user can delete their child" />
       </list>
     </recent_temporary>
   </component>
@@ -202,6 +193,7 @@
       <workItem from="1674876162733" duration="21000" />
       <workItem from="1674878926502" duration="1160000" />
       <workItem from="1675370800713" duration="25000" />
+      <workItem from="1675792178979" duration="14088000" />
     </task>
     <task id="LOCAL-00001" summary="Many updates to improve UI, UX, etc.">
       <created>1660578236961</created>

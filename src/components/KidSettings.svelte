@@ -54,6 +54,7 @@
     }
 
     async function deleteKid() {
+        if(!confirm(`Permanently delete ${name}? This cannot be undone!`)) return;
         console.log(`deleting ${kid.name}`)
         await remove(kid.id)
         toggle();
@@ -62,6 +63,7 @@
     }
 
     async function consolidate() {
+        if(!confirm(`Permanently consolidate all transactions for ${name}? This cannot be undone!`)) return;
         console.log(`consolidating ${kid.name}`)
         kid.transactions = {};
         kid.transactions[new Date().getTime()] = {

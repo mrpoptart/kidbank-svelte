@@ -31,7 +31,7 @@
         kid.parents.splice(kid.parents.indexOf(email), 1);
         await set(kid.id, kid)
         if (email === $user.email) {
-            window.location.hash = '';
+            window.location.href = '/';
             toggle();
         }
     }

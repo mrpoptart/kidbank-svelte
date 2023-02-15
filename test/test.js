@@ -92,8 +92,8 @@ describe("Child Reading", async () => {
         } catch (e) {
             console.error(e)
         }
-        await adminDb.collection('children').doc('23456').delete();
-        await adminDb.collection('children').doc('23457').delete();
+        // await adminDb.collection('children').doc('23456').delete();
+        // await adminDb.collection('children').doc('23457').delete();
     })
     it(`Authed users don't list children they don't have permissions for`, async () => {
         let adminDb = getAdminDb();
@@ -194,6 +194,6 @@ describe("Child Updating", async () => {
         await assertFails(db.collection('children').doc('23456').set({
             name: "Lee",
         }))
-        await adminDb.collection('children').doc('23456').delete();
+        // await adminDb.collection('children').doc('23456').delete();
     })
 });
