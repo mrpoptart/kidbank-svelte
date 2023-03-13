@@ -33,7 +33,7 @@ getAnalytics(firebaseApp);
 export const auth = getAuth();
 export let db;
 async function init(){
-    if(!['80', '5000'].includes(window.location.port)){
+    if(!['', '5000'].includes(window.location.port)){
         connectAuthEmulator(auth, "http://localhost:9099");
         db = getFirestore();
         connectFirestoreEmulator(db, 'localhost', 8000);

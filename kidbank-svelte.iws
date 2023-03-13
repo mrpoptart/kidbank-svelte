@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199871a7-d92d-405d-abf0-fe76bac1c825" name="Changes" comment="firestore v1">
-      <change afterPath="$PROJECT_DIR$/.firebase/hosting.cHVibGlj.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/firestore.indexes.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/dadbank-fcbc6-20fc8e1ae6b3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/migrate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase.json" beforeDir="false" afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kidbank-svelte.iws" beforeDir="false" afterPath="$PROJECT_DIR$/kidbank-svelte.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Welcome.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Welcome.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +160,7 @@
       <workItem from="1674878926502" duration="1160000" />
       <workItem from="1675370800713" duration="25000" />
       <workItem from="1675792178979" duration="14322000" />
-      <workItem from="1677780204985" duration="6098000" />
+      <workItem from="1677780204985" duration="6263000" />
     </task>
     <task id="LOCAL-00001" summary="Many updates to improve UI, UX, etc.">
       <created>1660578236961</created>
