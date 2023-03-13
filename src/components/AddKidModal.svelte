@@ -38,7 +38,7 @@
             transactions: {},
             parents: {},
         };
-        child.parents[$user.key] = true;
+        child.parents = [$user.email];
         child.transactions[new Date().getTime()] = {
             name: "Initial Amount",
             amount: initialSpend,
@@ -109,6 +109,6 @@
 
 </ModalBody>
 <ModalFooter>
-    <Button on:click={addKid} color="primary">Add {name}</Button>
     <Button on:click={()=>dispatch('cancel')} color="secondary">Cancel</Button>
+    <Button id="add-kid-confirm" on:click={addKid} color="primary">Add {name}</Button>
 </ModalFooter>

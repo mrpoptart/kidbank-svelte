@@ -95,7 +95,7 @@
             <FormGroup>
                 <InputGroup>
                     <InputGroupText>$</InputGroupText>
-                    <Input invalid={submitted && (isNaN(parseFloat(amount)) || parseFloat(amount) <= 0)} feedback="Please provide a positive number"  type="number" bind:value={amount} placeholder="Amount?"/>
+                    <Input invalid={submitted && (isNaN(parseFloat(amount)) || parseFloat(amount) <= 0)} feedback="Please provide a positive number"  type="number" bind:value={amount} placeholder="Amount {spend?'spent':'earned'}?"/>
                 </InputGroup>
             </FormGroup>
         </Form>
@@ -115,7 +115,7 @@
     </ModalBody>
     <ModalFooter>
         <Button color="secondary"  on:click={toggle}>Cancel</Button>
-        <Button color="primary" on:click={submit}>Save</Button>
+        <Button color="primary" on:click={submit}>{spend?'Spend':'Earn'}</Button>
     </ModalFooter>
 </Modal>
 

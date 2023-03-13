@@ -1,7 +1,8 @@
 <script>
     import {Button, Form, FormGroup, Icon, Input, InputGroup, Label, ListGroup} from "sveltestrap";
-    import {remove, set} from "../firebase";
+    import {set} from "../firebase";
     import {user} from "../store";
+
     export let kid;
     export let toggle;
     let parentEmail;
@@ -9,25 +10,34 @@
 
     async function addParent(e) {
         e.preventDefault();
-        if(invalidEmail) return;
+        emailInvalid();
+        if (invalidEmail) return;
         parentEmail = parentEmail.toLowerCase()
-        let emailKey = parentEmail.replace('.', '%2E');
         console.log(`Adding parent: ${parentEmail}`)
-        await set(`children/${kid.id}/parents/${emailKey}`, true)
-        await set(`parents/${emailKey}/${kid.id}`, true)
+        kid.parents.push(parentEmail)
+        await set(kid.id, kid)
         parentEmail = '';
     }
 
     async function deleteParent(email) {
-        await remove(`children/${kid.id}/parents/${email}`);
-        await remove(`parents/${email}/${kid.id}`);
-        if (email === $user.key) {
-            window.location.hash = '';
+        if (kid.parents.length === 1) {
+            return
+        }
+        if (email === $user.email) {
+            if(!confirm("Remove yourself? \nThis kid will no longer be part of your account")){
+                return;
+            }
+        }
+        kid.parents.splice(kid.parents.indexOf(email), 1);
+        await set(kid.id, kid)
+        if (email === $user.email) {
+            window.location.href = '/';
             toggle();
         }
     }
-    function testEmail(){
-        invalidEmail = !String(parentEmail)
+
+    function emailInvalid() {
+        invalidEmail = !parentEmail || !String(parentEmail)
             .toLowerCase()
             .match(
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -39,10 +49,15 @@
     <FormGroup>
         <Label>Parents</Label>
         <ListGroup>
-            {#each Object.entries(kid.parents) as [email, bool]}
+            {#each Object.entries(kid.parents) as [i, parentEmail]}
                 <InputGroup style="overflow: hidden; border-radius: 5px; margin-bottom: 2px;">
-                    <Input style="border-radius: 0; border: none;" type="text" disabled value="{email.replace('%2E','.')}"/>
-                    <Button style="border-radius: 0; border: none;" color="danger" on:click={()=>deleteParent(email)}><Icon name="x-circle-fill"/></Button>
+                    <Input style="border-radius: 0; border: none;" type="text" disabled value="{parentEmail}"/>
+                    {#if kid.parents.length > 1}
+                        <Button style="border-radius: 0; border: none;" color="danger"
+                                on:click={()=>deleteParent(parentEmail)}>
+                            <Icon name="x-circle-fill"/>
+                        </Button>
+                    {/if}
                 </InputGroup>
             {/each}
         </ListGroup>
@@ -54,7 +69,7 @@
         <InputGroup>
             <Input placeholder="Parent's Email Address"
                    bind:invalid="{invalidEmail}"
-                   on:keypress={testEmail}
+                   on:keypress={emailInvalid}
                    type="email"
                    bind:value={parentEmail}
             />

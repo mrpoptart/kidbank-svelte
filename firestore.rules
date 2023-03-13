@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /children/{document=**} {
+      function authedParentExists() {
+        return request.auth.token.email in resource.data.parents
+      }
+      function authedParentInRequest() {
+        return 'parents' in request.resource.data
+        && request.auth.token.email in request.resource.data.parents
+      }
+      allow create: if authedParentExists() || authedParentInRequest();
+      allow update: if authedParentExists();
+      allow delete: if authedParentExists();
+      allow read: if authedParentExists();
+    }
+  }
+}

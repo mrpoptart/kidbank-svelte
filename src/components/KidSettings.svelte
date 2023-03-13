@@ -14,7 +14,7 @@
         Label,
     } from "sveltestrap";
     import dayjs from "dayjs";
-    import {update} from "../firebase";
+    import {update, remove} from "../firebase";
     import {createEventDispatcher, onMount} from "svelte";
     import Parents from "./Parents.svelte";
 
@@ -34,10 +34,7 @@
     })
 
     function reset() {
-        console.log('resetting')
-        console.log(kid.birthday)
         birthday = dayjs(kid.birthday).format('YYYY-MM-DD');
-        console.log(birthday)
         name = kid.name;
         interest = kid.interest;
         save = kid.save;
@@ -45,6 +42,7 @@
     }
 
     function saveKid() {
+        console.log('saving')
         let updatedKid = {
             birthday,
             name,
@@ -53,39 +51,28 @@
             share,
         }
         dispatch('save', updatedKid);
-        open = false;
     }
 
     async function deleteKid() {
+        if(!confirm(`Permanently delete ${name}? This cannot be undone!`)) return;
         console.log(`deleting ${kid.name}`)
-        const parents = Object.keys(kid.parents);
-        const changes = {};
-        changes[`children/${kid.id}`] = null;
-        for (let p in parents) {
-            changes[`parents/${parents[p]}/${kid.id}`] = null;
-        }
-        console.log(JSON.stringify(changes))
-        await update('/', changes);
+        await remove(kid.id)
         toggle();
         window.location.hash = '';
         window.location.reload()
     }
 
     async function consolidate() {
+        if(!confirm(`Permanently consolidate all transactions for ${name}? This cannot be undone!`)) return;
         console.log(`consolidating ${kid.name}`)
-        const transactions = Object.keys(kid.transactions);
-        const changes = {};
-        let payload = {
-            amount: kid.spendable,
+        kid.transactions = {};
+        kid.transactions[new Date().getTime()] = {
             name: 'Initial Amount',
+            amount: kid.spendable,
             save: kid.saved,
             share: kid.shared,
         };
-        await dispatch('consolidate', payload);
-        for (let t in transactions) {
-            changes[`children/${kid.id}/transactions/${transactions[t]}`] = null;
-        }
-        await update(`/`, changes);
+        await dispatch('consolidate', kid);
         toggle();
     }
 </script>
@@ -108,34 +95,28 @@
             <FormGroup>
                 <Label for="saveRange">Interest Rate (% per month)</Label>
                 <InputGroup>
-                    <Input type="number" bind:value={interest}/>
+                    <Input on:change={saveKid} type="number" bind:value={interest}/>
                     <InputGroupText>%</InputGroupText>
                 </InputGroup>
             </FormGroup>
             <FormGroup>
                 <Label for="saveRange">Save Rate (% per allowance, calculated first)</Label>
                 <InputGroup>
-                    <Input id="saveRange" type="range" step="{5}" min={0} max={100} bind:value={save}/>
-                </InputGroup>
-                <InputGroup>
-                    <Input type="number" bind:value={save}/>
+                    <Input on:change={saveKid} type="number" bind:value={save}/>
                     <InputGroupText>%</InputGroupText>
                 </InputGroup>
                 <InputGroup>
-                    <Input style="width:100%;" id="saveRange" type="range" step="{5}" min={0} max={100} bind:value={save}/>
+                    <Input on:change={saveKid} style="width:100%;" id="saveRange" type="range" step="{5}" min={0} max={100} bind:value={save}/>
                 </InputGroup>
             </FormGroup>
             <FormGroup>
                 <Label for="shareRange">Share Rate (% per allowance, calculated second)</Label>
                 <InputGroup>
-                   <Input id="shareRange" type="range" step="{5}" min={0} max={100} bind:value={share}/>
-                </InputGroup>
-                <InputGroup>
-                    <Input type="number" bind:value={share}/>
+                    <Input on:change={saveKid} type="number" bind:value={share}/>
                     <InputGroupText>%</InputGroupText>
                 </InputGroup>
                 <InputGroup>
-                    <Input style="width:100%;" id="shareRange" type="range" step="{5}" min={0} max={100} bind:value={share}/>
+                    <Input on:change={saveKid} style="width:100%;" id="shareRange" type="range" step="{5}" min={0} max={100} bind:value={share}/>
                 </InputGroup>
             </FormGroup>
         </Form>
@@ -146,8 +127,7 @@
         <Button color="primary" on:click={consolidate}>Consolidate all transactions</Button>
     </ModalBody>
     <ModalFooter>
-        <Button color="secondary" on:click={toggle}>Close</Button>
-        <Button color="primary" on:click={saveKid}>Save</Button>
+        <Button color="primary" on:click={open=false}>Done</Button>
     </ModalFooter>
 </Modal>
 

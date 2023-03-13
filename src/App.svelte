@@ -3,7 +3,7 @@
     import {chosenKid, kids, kidsLoading, loggedIn, user} from './store'
     import Kid from "./Kid.svelte";
     import {currencyFormatter, hash} from "./helpers";
-    import {set} from "./firebase";
+    import {set, logout} from "./firebase";
     import {onMount} from 'svelte';
     import AddKidModal from "./components/AddKidModal.svelte";
     import {Button, Icon, Modal, Spinner,} from "sveltestrap";
@@ -34,8 +34,7 @@
         toggleAddKid();
         let kid = e.detail;
         const childId = nanoid();
-        set(`parents/${$user.key}/${childId}`, true);
-        set(`children/${childId}/`, kid);
+        set(`${childId}`, kid);
     }
 
     function toggleAddKid() {
@@ -74,7 +73,7 @@
                     <div style="margin-top:15px; display:flex; flex-direction: column; gap: 15px">
                         {#each Object.entries($kids) as [id, kid]}
                             <div style="width: 100%">
-                                <Button style="padding: 30px 50px" block color="primary"
+                                <Button id="kid-{id}" style="padding: 30px 50px" block color="primary"
                                         on:click="{window.location.hash=`kid/${kid.name}`}">
                                     <div style="font-size: 40px; line-height: 30px;">
                                         <Icon name="person-circle"/>
@@ -85,7 +84,7 @@
                             </div>
                         {/each}
                         <div style="width: 100%">
-                            <Button style="padding: 30px 0" block color="success" on:click="{toggleAddKid}">
+                            <Button id="add-kid-btn" style="padding: 30px 0" block color="success" on:click="{toggleAddKid}">
                                 <div style="font-size: 40px; line-height: 30px;">
                                     <Icon name="plus-circle"/>
                                     Add Kid
@@ -95,15 +94,23 @@
                         </div>
                     </div>
                 {/if}
+
+                {#each Object.entries($kids) as [id, kid]}
+                    <div use:swipe={{timeframe: 300, minSwipeDistance: 100, touchAction: 'pan-y'}} on:swipe={swipeHandler}>
+                        <Kid kid="{kid}" visible="{kid.name === $chosenKid}"/>
+                    </div>
+                {/each}
+
+                <p id="welcome-email" style="text-align: center; margin-top: 10px; font-size: small">
+                    Logged in as {$user.email}
+                    <br>
+                    <Button color="link" on:click={logout}>Log Out</Button>
+                </p>
+
+
             {:else}
                 <Welcome/>
             {/if}
-
-            {#each Object.entries($kids) as [id, kid]}
-                <div use:swipe={{timeframe: 300, minSwipeDistance: 100, touchAction: 'pan-y'}} on:swipe={swipeHandler}>
-                    <Kid kid="{kid}" visible="{kid.name === $chosenKid}"/>
-                </div>
-            {/each}
         </div>
     {:else}
         <div>
