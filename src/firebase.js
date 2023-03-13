@@ -27,18 +27,18 @@ const firebaseConfig = {
     appId: "1:746183158777:web:22c347402ba0a76a932b28",
     measurementId: "G-79Q150R6KR"
 };
-// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 getAnalytics(firebaseApp);
 
 export const auth = getAuth();
 export let db;
 async function init(){
-    if(window.location.hostname === 'localhost'){
+    if(!['80', '5000'].includes(window.location.port)){
         connectAuthEmulator(auth, "http://localhost:9099");
         db = getFirestore();
         connectFirestoreEmulator(db, 'localhost', 8000);
     } else{
+// Initialize Firebase
         db = getFirestore(firebaseApp);
     }
     try{
@@ -132,7 +132,7 @@ function transact(kid, save, share, amount, name) {
         share,
         amount,
         name,
-    })
+    }).catch()
 }
 
-init();
+init().catch();

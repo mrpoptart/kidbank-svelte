@@ -40,11 +40,12 @@ export default {
 	plugins: [
 		replace({
 			isProduction: production,
+			preventAssignment: true,
 		}),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
-				dev: !production
+				dev: !production,
 			}
 		}),
 		// we'll extract any component CSS out into
