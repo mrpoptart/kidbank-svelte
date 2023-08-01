@@ -41,11 +41,6 @@ async function init(){
 // Initialize Firebase
         db = getFirestore(firebaseApp);
     }
-    try{
-        await enableIndexedDbPersistence(db)
-    } catch(e) {
-        console.log(e.code)
-    }
 }
 
 export const logout = async () => {
