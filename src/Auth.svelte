@@ -1,5 +1,5 @@
 <script>
-   import {user, loggedIn} from './store';
+   import {loggedIn} from './store';
    import {login, logout} from "./firebase"
    import { Button } from 'sveltestrap';
 </script>

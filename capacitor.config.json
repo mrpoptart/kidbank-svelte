@@ -1,0 +1,15 @@
+{
+  "appId": "com.morganengel",
+  "appName": "KidBank",
+  "bundledWebRuntime": false,
+  "webDir": "public",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "FirebaseAuthentication": {
+      "skipNativeAuth": false,
+      "providers": ["google.com"]
+    }
+  }
+}

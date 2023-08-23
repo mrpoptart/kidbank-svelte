@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "746183158777",
+    "firebase_url": "https://dadbank-fcbc6-default-rtdb.firebaseio.com",
+    "project_id": "dadbank-fcbc6",
+    "storage_bucket": "dadbank-fcbc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746183158777:android:afd6c0b317e58790932b28",
+        "android_client_info": {
+          "package_name": "com.me.kbrn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746183158777-gcqu2p8130sh9sv316c9kaft54fr2utf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbY592Uiqvo9NR_lujCvOs24xfqzFXOq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746183158777-gcqu2p8130sh9sv316c9kaft54fr2utf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "746183158777-fv8i1f0t0dbk5r2il7vrpgiomld09e2j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.me.kidbank"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746183158777:android:592d84a83f67abc2932b28",
+        "android_client_info": {
+          "package_name": "com.morganengel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746183158777-gcqu2p8130sh9sv316c9kaft54fr2utf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbY592Uiqvo9NR_lujCvOs24xfqzFXOq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746183158777-gcqu2p8130sh9sv316c9kaft54fr2utf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "746183158777-fv8i1f0t0dbk5r2il7vrpgiomld09e2j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.me.kidbank"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

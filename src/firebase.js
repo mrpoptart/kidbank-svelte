@@ -1,4 +1,5 @@
 import {getAnalytics} from "firebase/analytics";
+import {signInWithCredential,} from "firebase/auth";
 import {
     collection,
     deleteDoc,
@@ -10,12 +11,13 @@ import {
     updateDoc,
     where,
     connectFirestoreEmulator,
-    enableIndexedDbPersistence,
 } from "firebase/firestore";
 import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut, connectAuthEmulator} from "firebase/auth";
 import {kids, kidsLoading, user} from "./store";
 import dayjs from "dayjs";
+import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
+import {Capacitor} from "@capacitor/core";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBy3AS4m3rAnmPuVOBONZDFIEMSzY2InAg",
@@ -27,6 +29,7 @@ const firebaseConfig = {
     appId: "1:746183158777:web:22c347402ba0a76a932b28",
     measurementId: "G-79Q150R6KR"
 };
+
 const firebaseApp = initializeApp(firebaseConfig);
 getAnalytics(firebaseApp);
 
@@ -47,7 +50,18 @@ export const logout = async () => {
     await signOut(auth)
 };
 export const login = () => {
-    return signInWithRedirect(auth, new GoogleAuthProvider());
+    console.log("logging in with native (theoretically)")
+    return signInWithGoogle();
+};
+
+const signInWithGoogle = async () => {
+    console.log("sign in")
+    // 1. Create credentials on the native layer
+    const result = await FirebaseAuthentication.signInWithGoogle();
+    console.log({result})
+    // 2. Sign in on the web layer using the id token
+    const credential = GoogleAuthProvider.credential(result.credential?.idToken);
+    await signInWithCredential(auth, credential);
 };
 
 export const set = async (document, value) => {
