@@ -13,9 +13,13 @@
     "rules:test": "mocha",
     "rules:push": "firebase deploy --only firestore:rules",
     "sync": "npm run build && npx cap sync",
-    "android:open": "npx cap open android"
+    "android:open": "npx cap open android",
+    "android:sha1": "echo \"Look in the google cloud secret manager\" && echo \"What's the store pass?\" && read storepass && echo \"What's the keypass?\" && read keypass && keytool -list -v -keystore ./kidbank.keystore -alias kidbank -storepass $storepass -keypass $keypass",
+    "android:debug:sha1": "keytool -list -v -keystore ./debug.keystore -alias android -storepass android -keypass android",
+    "assets": "npx @capacitor/assets generate --iconBackgroundColor '#eeeeee' --iconBackgroundColorDark '#1C1C1C' --splashBackgroundColor '#eeeeee' --splashBackgroundColorDark '#1C1C1C'"
   },
   "devDependencies": {
+    "@capacitor/assets": "^2.0.4",
     "@capacitor/cli": "^5.3.0",
     "@firebase/rules-unit-testing": "^2.0.5",
     "@rollup/plugin-commonjs": "^17.0.0",
