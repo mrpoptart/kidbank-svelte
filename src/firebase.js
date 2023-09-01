@@ -13,7 +13,7 @@ import {
     connectFirestoreEmulator,
 } from "firebase/firestore";
 import {initializeApp} from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut, connectAuthEmulator} from "firebase/auth";
+import {indexedDBLocalPersistence,getAuth, GoogleAuthProvider,initializeAuth, signInWithRedirect, signOut, connectAuthEmulator} from "firebase/auth";
 import {kids, kidsLoading, user} from "./store";
 import dayjs from "dayjs";
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
@@ -33,7 +33,10 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 getAnalytics(firebaseApp);
 
-export const auth = getAuth();
+initializeAuth(firebaseApp, {
+    persistence: indexedDBLocalPersistence
+})
+export const auth = getAuth(firebaseApp)
 export let db;
 async function init(){
     if(!['', '5000'].includes(window.location.port)){
