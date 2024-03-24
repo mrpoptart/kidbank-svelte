@@ -1,6 +1,6 @@
 <script>
     import {swipe} from 'svelte-gestures';
-    import {chosenKid, kids, kidsLoading, loggedIn, user} from './store'
+    import {chosenKid, kids, kidsLoading, loggedIn} from './store'
     import Kid from "./Kid.svelte";
     import {currencyFormatter, hash} from "./helpers";
     import {set, logout} from "./firebase";
@@ -102,9 +102,7 @@
                 {/each}
 
                 <p id="welcome-email" style="text-align: center; margin-top: 10px; font-size: small">
-                    Logged in as {$user.email}
-                    <br>
-                    <Button color="link" on:click={logout}>Log Out</Button>
+                    <Button color="link" on:click={logout}><Icon name="door-open"/> Log Out</Button>
                 </p>
 
 

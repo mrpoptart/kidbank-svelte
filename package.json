@@ -7,7 +7,7 @@
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear --port 8080",
     "emulate": "firebase emulators:start",
-    "deploy": "firebase deploy",
+    "deploy": "npm run build && firebase deploy",
     "cypress:test": "cypress run",
     "cypress:open": "cypress open",
     "rules:test": "mocha",
