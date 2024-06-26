@@ -18,7 +18,7 @@ import dayjs from "dayjs";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBy3AS4m3rAnmPuVOBONZDFIEMSzY2InAg",
-    authDomain: "kidbank.morganengel.com",
+    authDomain: "dadbank-fcbc6.firebaseapp.com",
     databaseURL: "https://dadbank-fcbc6-default-rtdb.firebaseio.com",
     projectId: "dadbank-fcbc6",
     storageBucket: "dadbank-fcbc6.appspot.com",
@@ -29,7 +29,9 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 getAnalytics(firebaseApp);
 
+const provider = new GoogleAuthProvider();
 export const auth = getAuth();
+auth.useDeviceLanguage();
 export let db;
 async function init(){
     if(!['', '5000'].includes(window.location.port)){
@@ -45,8 +47,25 @@ async function init(){
 export const logout = async () => {
     await signOut(auth)
 };
-export const login = () => {
-    return signInWithPopup(auth, new GoogleAuthProvider());
+export const login = async () => {
+    try {
+        const result = await signInWithPopup(auth, provider)
+        user.set(result.user);
+    } catch (error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.error({
+            errorCode,
+            errorMessage,
+            email,
+            credential
+        })
+    }
 };
 
 export const set = async (document, value) => {
