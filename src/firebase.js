@@ -10,16 +10,15 @@ import {
     updateDoc,
     where,
     connectFirestoreEmulator,
-    enableIndexedDbPersistence,
 } from "firebase/firestore";
 import {initializeApp} from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithRedirect, signOut, connectAuthEmulator} from "firebase/auth";
+import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, connectAuthEmulator} from "firebase/auth";
 import {kids, kidsLoading, user} from "./store";
 import dayjs from "dayjs";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBy3AS4m3rAnmPuVOBONZDFIEMSzY2InAg",
-    authDomain: "dadbank-fcbc6.firebaseapp.com",
+    authDomain: "kidbank.morganengel.com",
     databaseURL: "https://dadbank-fcbc6-default-rtdb.firebaseio.com",
     projectId: "dadbank-fcbc6",
     storageBucket: "dadbank-fcbc6.appspot.com",
@@ -34,7 +33,7 @@ export const auth = getAuth();
 export let db;
 async function init(){
     if(!['', '5000'].includes(window.location.port)){
-        connectAuthEmulator(auth, "http://localhost:9099");
+        connectAuthEmulator(auth, "http://localhost:9092");
         db = getFirestore();
         connectFirestoreEmulator(db, 'localhost', 8000);
     } else{
@@ -47,7 +46,7 @@ export const logout = async () => {
     await signOut(auth)
 };
 export const login = () => {
-    return signInWithRedirect(auth, new GoogleAuthProvider());
+    return signInWithPopup(auth, new GoogleAuthProvider());
 };
 
 export const set = async (document, value) => {

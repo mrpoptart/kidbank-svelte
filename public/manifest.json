@@ -4,7 +4,7 @@
   "description": "An opinionated way to teach your kids how to make, save, and invest money.",
   "start_url": "/",
   "background_color": "#1d3040",
-  "display": "fullscreen",
+  "display": "minimal-ui",
   "scope": "/",
   "id": "/",
   "icons": [
