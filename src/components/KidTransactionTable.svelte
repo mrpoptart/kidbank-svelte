@@ -50,7 +50,7 @@
             class="{getAllowanceClass(key, kid.transactions[key])}">
             <td>{dayjs(parseInt(key)).format('M-D-YYYY')}</td>
             <td>{kid.transactions[key].name}</td>
-            <td>{currencyFormatter(kid.transactions[key].amount)}</td>
+            <td style={kid.transactions[key].amount > 0 ? 'color:lime' : 'color:coral'}>{currencyFormatter(kid.transactions[key].amount)}</td>
         </tr>
     {/each}
     </tbody>
